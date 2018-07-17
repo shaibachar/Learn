@@ -1,7 +1,5 @@
 package com.test.Actuator.testActuator;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.xpath;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,10 +7,18 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-public class GeneralTests {
+import com.test.Actuator.testActuator.utils.BaseTest;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class GeneralTests implements BaseTest {
 
 	private Map<String, List<String>> data;
 
@@ -49,39 +55,50 @@ public class GeneralTests {
 		return res;
 	}
 
-	public static Predicate<String> containsOnes = new Predicate<String>() {
+	public static List<String> cleanUp(List<String> names, String toRemove) {
+		List<String> res = new ArrayList<>();
+		res = names.stream().map(t -> t.replaceAll(toRemove, "")).collect(Collectors.toList());
+		return res;
+	}
 
-		@Override
-		public boolean test(String t) {
-			return t.contains("1");
-		}
-		
-	};
+	@Test
+	public void testCleanUp() {
+		List<String> res = new ArrayList<>();
+		res.add("shshssh_Start");
+		res.add("shshssh_start");
+		res.add("shshssh_Stop");
+		res.add("shshssh");
+		List<String> cleanUp = cleanUp(res, "_Start");
 
-	public static Predicate<String> containsTwos = new Predicate<String>() {
+		cleanUp.stream().forEach((t) -> {
+			System.out.println(t);
+		});
 
-		@Override
-		public boolean test(String t) {
-			return t.contains("2");
-		}
-		
-	};
+		Assert.assertEquals("shshssh", cleanUp.get(0));
+		Assert.assertEquals("shshssh_start", cleanUp.get(1));
+		Assert.assertEquals("shshssh_Stop", cleanUp.get(2));
+		Assert.assertEquals("shshssh", cleanUp.get(3));
 
-	public static Predicate<String> aggrigation = new Predicate<String>() {
+	}
 
-		@Override
-		public boolean test(String t) {
-			return containsOnes.test(t) || containsTwos.test(t);
-		}
-		
-	};
-	
+	public static Predicate<String> containsOnes = (Predicate<String>) t -> t.contains("1");
+
+	public static Predicate<String> containsTwos = (Predicate<String>) t -> t.contains("2");
+
+	public static Predicate<String> aggrigation = t -> containsOnes.test(t) || containsTwos.test(t);
+
 	@Test
 	public void filterByValueMap() {
 		Map<String, List<String>> filteredMap = filterByValueList(data, x -> aggrigation.test(x));
 		filteredMap.forEach((key, value) -> {
 			System.out.println("Key : " + key + " Value : " + value);
 		});
+		Assert.assertTrue(filteredMap.containsKey("first"));
+		Assert.assertTrue(filteredMap.containsKey("second"));
+		Assert.assertTrue(filteredMap.get("first").get(0).equals("dd1"));
+		Assert.assertTrue(filteredMap.get("first").get(1).equals("dd2"));
+		Assert.assertTrue(filteredMap.get("second").get(0).equals("ff1"));
+		Assert.assertTrue(filteredMap.get("second").get(1).equals("ff2"));
 	}
 
 }

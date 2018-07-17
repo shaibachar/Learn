@@ -8,11 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.test.Actuator.testActuator.services.HelloWorldService;
+import com.test.Actuator.testActuator.utils.BaseTest;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestActuatorApplicationTests {
+public class TestActuatorApplicationTests implements BaseTest{
 
 	@Autowired
 	private HelloWorldService helloWorldService;
@@ -21,7 +22,7 @@ public class TestActuatorApplicationTests {
 	@Test
 	public void sayHelloWrold() {
 		String sayHello = helloWorldService.sayHello("shai");
-		Assert.assertEquals("","Hello shai", sayHello);
+		Assert.assertEquals("","Shalom shai", sayHello);
 	}
 
 	

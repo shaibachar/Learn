@@ -5,12 +5,13 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 
 import com.test.Actuator.testActuator.controller.MicroController2;
+import com.test.Actuator.testActuator.utils.BaseTest;
 
 import au.com.dius.pact.consumer.ConsumerPactBuilder.PactDslWithProvider;
 import au.com.dius.pact.consumer.ConsumerPactTest;
 import au.com.dius.pact.model.PactFragment;
 
-public class Service2PactTest extends ConsumerPactTest {
+public class Service2PactTest extends ConsumerPactTest implements BaseTest{
 
 	@Override
 	protected PactFragment createFragment(PactDslWithProvider builder) {

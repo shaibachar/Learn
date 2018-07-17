@@ -9,10 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.test.Actuator.testActuator.services.HelloWorldService;
+import com.test.Actuator.testActuator.utils.BaseTest;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class HelloWorldServiceTest {
+public class HelloWorldServiceTest implements BaseTest{
 
 	@Autowired
 	private HelloWorldService helloWorldService;
