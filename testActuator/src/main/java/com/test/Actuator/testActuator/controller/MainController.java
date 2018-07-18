@@ -5,23 +5,21 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.Actuator.testActuator.services.HelloWorldService;
 
 @RestController
 public class MainController {
 
-	@Autowired
-	private HelloWorldService helloWorldService;
-
-	@GetMapping("/hello/{name}")
-	private String hello(@PathVariable("name") String name) {
-		return helloWorldService.sayHello(name);
-	}
+//	@Autowired
+//	private HelloWorldService helloWorldService;
+//
+//	@GetMapping("/hello/{name}")
+//	private String hello(@PathVariable("name") String name) {
+//		return helloWorldService.sayHello(name);
+//	}
 
 	@GetMapping("/getMyFile/{value}")
 	private String getMyFile(@PathVariable("value") String value) {

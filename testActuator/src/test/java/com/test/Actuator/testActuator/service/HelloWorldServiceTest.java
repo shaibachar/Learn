@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.test.Actuator.testActuator.services.HelloWorldService;
 import com.test.Actuator.testActuator.utils.BaseTest;
+import com.test.services.HelloWorldService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
