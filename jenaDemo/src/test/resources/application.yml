@@ -1,0 +1,6 @@
+application:
+  tdbPath: tdb
+  lucenePath: luceneIndex
+  indexedProperty: hasLongText
+  dataFileName: data.dat
+  dataPath: ./
