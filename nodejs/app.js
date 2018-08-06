@@ -2,31 +2,15 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-
+const dbConfig = require("./dbConfig");
 const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
 
-// Configuration
 
-//DB connection start
-mongoose.connect(
-  "mongodb://localhost:27017/test",
-  { useNewUrlParser: true }
-);
+if (process.env.NODE_ENV !== "test") {
+  app.use(morgan("dev")); //'combined' outputs the Apache style LOGs
+}
 
-var db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function callback() {
-  console.log("db connected");
-});
-
-exports.test = function(req, res) {
-  res.render("test");
-};
-// DB Connection end
-
-app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -45,6 +29,7 @@ app.use((req, res, next) => {
 });
 
 //Routes
+app.get("/", (req, res, next) => res.json({ message: "Welcome !" }));
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 
