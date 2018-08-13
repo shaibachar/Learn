@@ -1,0 +1,6 @@
+{
+    "env": {
+        "MONGO_PASSWORD": "",
+        "MONGO_URL": "localhost"
+    }
+}
