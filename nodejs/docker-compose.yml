@@ -6,7 +6,7 @@ services:
     - "3000:3000"
     environment:
       - NODE_ENV=prod
-      - MONGO_DB_URL=MONGO_DB_URL=mongodb://mongo:27017/test
+      - MONGO_DB_URL=mongodb://mongo:27017/test
     depends_on:
     - mongo
   mongo:
