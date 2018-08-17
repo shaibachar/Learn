@@ -1,0 +1,9 @@
+{
+  "generator-django-rest": {
+    "promptValues": {
+      "prod_branch": true,
+      "git_url": "",
+      "heroku_url": ""
+    }
+  }
+}

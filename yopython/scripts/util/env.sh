@@ -1,0 +1,5 @@
+DB_PORT=5433
+PROJECT_NAME=yopython
+FRONTEND_NAME=yopython-frontend
+GIT_URL=
+HEROKU_URL=

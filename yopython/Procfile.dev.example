@@ -1,0 +1,8 @@
+redis: redis-server
+pg: postgres -D tmp/postgres -p 5433
+worker: celery worker -A yopython.celery --loglevel=info --logfile=worker.log -B
+web: python manage.py runserver_plus
+# web: gunicorn yopython.wsgi
+
+frontend: (cd yopython-frontend; npm start)
+
