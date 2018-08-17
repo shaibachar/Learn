@@ -16,7 +16,7 @@ router.get("/", (req, res, next) => {
         orders: docs.map(doc => {
           return {
             orderId: doc._id,
-            product: doc.productId,
+            product: doc.product,
             quantity: doc.quantity,
             url: {
               type: "GET",

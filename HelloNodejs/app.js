@@ -6,11 +6,11 @@ const dbConfig = require("./dbConfig");
 const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
 
-
 if (process.env.NODE_ENV !== "test") {
   app.use(morgan("dev")); //'combined' outputs the Apache style LOGs
 }
 
+app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
