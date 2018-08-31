@@ -18,7 +18,15 @@ def printArr(a,start,end):
         print("{0}:{1}".format(i,b[i]))
 
 a = ['shai','bachar','hello','world']
-printArr(a,3,4)
+a.append('appended')
 
+printArr(a,3,5)
+a.pop(0)
 
+assert not 'shai' in a
+a.pop()
+
+assert not 'appended' in a
+
+print('\n Going to print fibonacciSeries \n')
 fibonacciSeries()
