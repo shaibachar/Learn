@@ -2,8 +2,8 @@ const Customer = require("../models/customer");
 const mongoose = require("mongoose");
 
 exports.customer_delete = (req, res, next) => {
-  const id = req.params.productId;
-  Product.remove({
+  const id = req.params.customerId;
+  Customer.remove({
     _id: id
   })
     .exec()
@@ -25,7 +25,7 @@ exports.customer_patch = (req, res, next) => {
     updateOps[ops.propName] = ops.value;
   }
 
-  Product.update(
+  Customer.update(
     {
       _id: id
     },
@@ -46,7 +46,7 @@ exports.customer_patch = (req, res, next) => {
 
 exports.customer_get_byId = (req, res, next) => {
   const id = req.params.customerId;
-  Product.findById(id)
+  Customer.findById(id)
     .exec()
     .then(doc => {
       console.log("Data from DB: " + doc);
@@ -100,7 +100,7 @@ exports.customers_post = (req, res, next) => {
 };
 
 exports.customers_get_all = (req, res, next) => {
-  Product.find()
+  Customer.find()
     .select("firstName lastName _id customerImage")
     .exec()
     .then(docs => {

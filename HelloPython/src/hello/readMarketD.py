@@ -3,12 +3,46 @@ import html5lib
 
 from os import listdir
 from os.path import isfile, join
+from itertools import islice, tee
+from datetime import date, datetime
 
-def allFiles(mypath):
-    onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-    return onlyfiles
 
-print(allFiles("../resources/"))
+class ReadMarketData(object):
+    """
+    This Class will load all csv market Data and aggrigate them in to a one DataFrame
+    """
+    def __init__(self):
+        pass
 
-data = pd.read_html('http://www.tapuz.co.il/forums/archive/200/%D7%9E%D7%A9%D7%A4%D7%97%D7%94/%D7%92%D7%A8%D7%95%D7%A9%D7%99%D7%9D_%D7%92%D7%A8%D7%95%D7%A9%D7%95%D7%AA')
-print(data)
+    def get_file_realDate(self, filePath):
+        with open(filePath, 'r') as infile:
+            lines_gen = islice(infile, 3)
+            i = 0
+            for line in lines_gen:
+                if (i == 1):
+                    fileDate = datetime.strptime(
+                        line.replace('*', '').strip(), '%d/%m/%Y')
+                    return fileDate
+                i = i+1
+
+    def allFiles(self, filePath):
+        onlyfiles = [join(filePath, f) for f in listdir(filePath) if isfile(join(filePath, f))]
+        return onlyfiles
+
+    def readData(self, filePath):
+        try:
+            dataDate = self.get_file_realDate(filePath)
+            df = pd.read_csv(filePath,
+                             skiprows=3, encoding='iso8859_8')
+            df['day'] = dataDate
+            df.set_index(["day", "מס' ני\"ע"])
+            df = df.loc[:, ["day", "מס' ני\"ע", "מחיר קניה", "מחיר פדיון"]]
+            return df
+        except Exception as e:
+            print("error on readcsv:", filePath, e)
+
+    def aggrigate_All_Data(self, folderPath):
+        frames = []
+        for filePath in self.allFiles(folderPath):
+            frames.append(self.readData(filePath))
+        return pd.concat(frames)
