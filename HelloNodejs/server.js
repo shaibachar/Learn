@@ -1,9 +1,23 @@
 const http = require("http");
+const https = require("https");
+const fs = require("fs");
+const config = require("./config");
 const app = require("./app");
 
-const port = process.env.PORT || 3000;
-const server = http.createServer(app);
+const http_port = process.env.HTTP_PORT || 3000;
+const https_port = process.env.HTTPS_PORT || 3001;
 
-server.listen(port);
+const httpOptions = {
+  key: fs.readFileSync("./ssl/server.key"),
+  cert: fs.readFileSync("./ssl/server.crt")
+};
 
-module.exports = server
+const http_server = http.createServer(app);
+http_server.listen(http_port);
+
+const https_server = https.createServer(httpOptions, app);
+https_server.listen(https_port);
+
+console.log(config);
+
+module.exports = http_server;

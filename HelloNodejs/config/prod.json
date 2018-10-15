@@ -1,0 +1,5 @@
+{
+    "MONGO_PASSWORD": "",
+    "MONGO_DB_URL": "mongodb://mongo:27017/test",
+    "JWT_KEY": "secret"
+ }
