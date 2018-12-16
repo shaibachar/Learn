@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Product set",
+  "type": "array",
+  "Customer": {
+    "name": {
+        "type": "string"
+    },
+    "age": {
+        "type": "number"
+    },
+    "productList": {
+        "type": "array",
+        "Product":       {
+        "id": null,
+        "name": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "price": {
+            "type": "number"
+        }
+      },
+      "minItems": 0,
+      "uniqueItens":false
+    },
+    "id": {
+        "type": "string"
+    }
+  }
+}

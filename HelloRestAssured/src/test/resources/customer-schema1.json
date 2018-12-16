@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Customers",
+    "type": "array",
+    "items": {
+      "title": "Customer",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "number"
+        },
+        "productList": {
+          "type": "array",
+          "items": {
+            "title": "Product",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "number"
+              },
+              "description": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              }
+            }
+          },
+          "minItems": 0,
+          "uniqueItems": false
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": ["id"]
+    }
+  }
+  
