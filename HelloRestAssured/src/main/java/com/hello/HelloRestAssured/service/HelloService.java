@@ -15,7 +15,7 @@ public class HelloService {
 
 	public HelloService() {
 		customers = new ArrayList<>();
-		loadData();
+//		loadData();
 	}
 
 	private void loadData() {
