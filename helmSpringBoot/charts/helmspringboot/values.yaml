@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: shai/helmspringboot
+  repository: helmspringboot
   tag: latest
   pullPolicy: IfNotPresent
 service:
