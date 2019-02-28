@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.cache.HelloSpringCache.model.Client;
 import com.cache.HelloSpringCache.repository.ClientRepository;
+import com.cache.HelloSpringCache.service.CachingService;
+import com.cache.HelloSpringCache.service.ClientService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,9 +22,11 @@ public class StartupRunner implements CommandLineRunner {
 
 	private boolean init = false;
 	private final ClientRepository clientRepository;
+	private final CachingService cachingService;
 	
-	public StartupRunner(ClientRepository clientRepository) {
+	public StartupRunner(ClientRepository clientRepository,CachingService cachingService) {
 		this.clientRepository = clientRepository;
+		this.cachingService = cachingService;
 	}
 
 	@Override
@@ -47,10 +51,11 @@ public class StartupRunner implements CommandLineRunner {
 		return res;
 	}
 
-	@Scheduled(fixedDelay = 260000)
+	@Scheduled(fixedDelay = 60000)
 	public void updateCache() {
 		if (init) {
-			log.debug("Going to clean client cache");
+			log.info("Going to clean client cache");
+			cachingService.evictAllCaches();
 		}
 	}
 
