@@ -7,4 +7,30 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix="application")
 public class ApplicationProperties {
 
+	private String cacheFilePath;
+	private boolean useLocalCache;
+
+	public String getCacheFilePath() {
+		return cacheFilePath;
+	}
+
+	public boolean useLocalCache() {
+		return useLocalCache;
+	}
+
+	public boolean isUseLocalCache() {
+		return useLocalCache;
+	}
+
+	public void setUseLocalCache(boolean useLocalCache) {
+		this.useLocalCache = useLocalCache;
+	}
+
+	public void setCacheFilePath(String cacheFilePath) {
+		this.cacheFilePath = cacheFilePath;
+	}
+	
+	
+	
+
 }

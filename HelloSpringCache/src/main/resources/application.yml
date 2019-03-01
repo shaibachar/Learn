@@ -1,0 +1,3 @@
+application:
+  cacheFilePath: ./clientCache.json
+  useLocalCache: false

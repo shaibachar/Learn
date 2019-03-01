@@ -7,9 +7,9 @@ import com.cache.HelloSpringCache.model.Client;
 
 public interface ClientRepository {
 
-	public Client getClientById(String clientId);
+	public List<Client> getClientById(String clientId);
 	
-	public List<Client> getAllClients();
+	public Map<String, List<Client>> getAllClients();
 
-	void loadData(Map<String, Client> data);
+	void loadData(Map<String, List<Client>>  data);
 }

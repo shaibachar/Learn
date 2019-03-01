@@ -1,9 +1,7 @@
 package com.cache.HelloSpringCache.controller;
 
-import java.text.MessageFormat;
 import java.util.List;
-
-import javax.websocket.server.PathParam;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,18 +23,16 @@ public class ClientController {
 	public ClientController(ClientService clientService) {
 		this.clientService = clientService;
 	}
-	
+
 	@GetMapping("getClient/{clientId}")
-	public Client getClient(@PathVariable("clientId") String clientId) {
-		log.info(MessageFormat.format("getClientId:{0}", clientId));
-		Client clientById = clientService.getClient(clientId);
-		return clientById;
+	public List<Client> getClient(@PathVariable("clientId") String clientId) {
+		List<Client> client = clientService.getClient(clientId);
+		return client;
 	}
-	
-	
+
 	@GetMapping("getAllClient")
-	public List<Client> getAllClient() {
-		List<Client> allClients = clientService.getAllClient();
-		return allClients;
+	public Map<String, List<Client>> getAllClient() {
+		Map<String, List<Client>> allClient = clientService.getAllClient();
+		return allClient;
 	}
 }
