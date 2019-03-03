@@ -1,36 +1,45 @@
 package com.cache.HelloSpringCache;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.cache.HelloSpringCache.configuration.ApplicationProperties;
 import com.cache.HelloSpringCache.model.Client;
 import com.cache.HelloSpringCache.repository.ClientRepository;
 import com.cache.HelloSpringCache.service.CachingService;
-import com.cache.HelloSpringCache.service.ClientService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Component
 @ConditionalOnProperty(prefix = "job.autorun", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class StartupRunner implements CommandLineRunner {
 
+	@Value("${application.myPort}")
+	private String myPort;
+	
 	private boolean init = false;
 	private final ClientRepository clientRepository;
 	private final CachingService cachingService;
+	private ApplicationProperties applicationProperties;
 	
-	public StartupRunner(ClientRepository clientRepository,CachingService cachingService) {
+	public StartupRunner(ClientRepository clientRepository,CachingService cachingService,ApplicationProperties applicationProperties) {
 		this.clientRepository = clientRepository;
 		this.cachingService = cachingService;
+		this.applicationProperties = applicationProperties;
+		
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		System.out.println(MessageFormat.format("Starting env:{0}", applicationProperties.getEnvName()));
+		System.out.println(MessageFormat.format("Starting port:{0}", myPort));
 		init = true;
 		Map<String, Client> data = getData();
 		clientRepository.loadData(data);
@@ -54,7 +63,7 @@ public class StartupRunner implements CommandLineRunner {
 	@Scheduled(fixedDelay = 60000)
 	public void updateCache() {
 		if (init) {
-			log.info("Going to clean client cache");
+			System.out.println("Going to clean client cache");
 			cachingService.evictAllCaches();
 		}
 	}

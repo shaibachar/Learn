@@ -1,0 +1,14 @@
+version: '3'
+services:
+  springcache:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        buildno: 1
+    image: springcache
+    ports:
+      - "8080:8080"
+    environment:
+      - application.envName="envName"
+      - application.myPort=123456
