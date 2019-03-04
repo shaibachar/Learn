@@ -1,7 +1,7 @@
 package com.cache.HelloSpringCache.controller;
 
-import java.text.MessageFormat;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cache.HelloSpringCache.model.Client;
 import com.cache.HelloSpringCache.service.ClientService;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @RestController
 @RequestMapping("/client/")
 public class ClientController {
@@ -27,19 +24,17 @@ public class ClientController {
 	public ClientController(ClientService clientService) {
 		this.clientService = clientService;
 	}
-	
+
 	@GetMapping("getClient/{clientId}")
-	public Client getClient(@PathVariable("clientId") String clientId) {
-		log.info(MessageFormat.format("getClientId:{0}", clientId));
-		Client clientById = clientService.getClient(clientId);
-		return clientById;
+	public List<Client> getClient(@PathVariable("clientId") String clientId) {
+		List<Client> client = clientService.getClient(clientId);
+		return client;
 	}
-	
-	
+
 	@GetMapping("getAllClient")
-	public List<Client> getAllClient() {
-		List<Client> allClients = clientService.getAllClient();
-		return allClients;
+	public Map<String, List<Client>> getAllClient() {
+		Map<String, List<Client>> allClient = clientService.getAllClient();
+		return allClient;
 	}
 	
 	

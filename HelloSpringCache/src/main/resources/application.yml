@@ -1,3 +1,5 @@
 application:
   envName: 'dev'
   myPort: 1111
+  cacheFilePath: ./clientCache.json
+  useLocalCache: false

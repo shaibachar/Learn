@@ -1,7 +1,10 @@
 package com.cache.HelloSpringCache;
 
+import java.io.File;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -11,9 +14,12 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.cache.HelloSpringCache.configuration.ApplicationProperties;
+import com.cache.HelloSpringCache.model.CacheClients;
 import com.cache.HelloSpringCache.model.Client;
 import com.cache.HelloSpringCache.repository.ClientRepository;
 import com.cache.HelloSpringCache.service.CachingService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 @ConditionalOnProperty(prefix = "job.autorun", name = "enabled", havingValue = "true", matchIfMissing = true)
@@ -22,16 +28,18 @@ public class StartupRunner implements CommandLineRunner {
 	@Value("${application.myPort}")
 	private String myPort;
 	
+	private ObjectMapper mapper;
 	private boolean init = false;
 	private final ClientRepository clientRepository;
 	private final CachingService cachingService;
-	private ApplicationProperties applicationProperties;
-	
-	public StartupRunner(ClientRepository clientRepository,CachingService cachingService,ApplicationProperties applicationProperties) {
+	private final ApplicationProperties applicationProperties;
+
+	public StartupRunner(ClientRepository clientRepository, CachingService cachingService,
+			ApplicationProperties applicationProperties) {
+		mapper = new ObjectMapper();
 		this.clientRepository = clientRepository;
 		this.cachingService = cachingService;
 		this.applicationProperties = applicationProperties;
-		
 	}
 
 	@Override
@@ -39,32 +47,66 @@ public class StartupRunner implements CommandLineRunner {
 		System.out.println(MessageFormat.format("Starting env:{0}", applicationProperties.getEnvName()));
 		System.out.println(MessageFormat.format("Starting port:{0}", myPort));
 		init = true;
-		Map<String, Client> data = getData();
+		Map<String, List<Client>>  data = getData(applicationProperties.useLocalCache());
 		clientRepository.loadData(data);
 	}
 
-	private Map<String, Client> getData() {
-		Map<String, Client> res = new HashMap<>();
-		res.put("111", new Client("111","aaa","bbb","1111"));
-		res.put("112", new Client("112","aaa1","bbb","1111"));
-		res.put("113", new Client("113","aaa2","bbb","1111"));
-		res.put("114", new Client("114","aaa3","bbb","1111"));
-		res.put("115", new Client("115","aaa4","bbb","1111"));
-		res.put("116", new Client("116","aaa5","bbb","1111"));
-		res.put("117", new Client("117","aaa6","bbb","1111"));
-		res.put("118", new Client("118","aaa7","bbb","1111"));
-		res.put("119", new Client("119","aaa8","bbb","1111"));
-		
+	private Map<String, List<Client>> getData(Boolean useLocalCache) {
+		String cacheFilePath = applicationProperties.getCacheFilePath();
+		File file = new File(cacheFilePath);
+		Map<String, List<Client>> res = getClients();
+		if (!useLocalCache) {
+			file.delete();
+			try {
+				CacheClients cacheClients = new CacheClients();
+				cacheClients.setClientList(res);
+				mapper.writeValue(file, cacheClients);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			if (file.exists()) {
+				try {
+					TypeReference<CacheClients> typeReference = new TypeReference<CacheClients>() {
+					};
+					CacheClients readValue = mapper.readValue(file, typeReference);
+					Map<String, List<Client>> clientList = readValue.getClientList();
+					res = clientList;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return res;
 	}
 
-	@Scheduled(fixedDelay = 60000)
+	private Map<String, List<Client>> getClients() {
+		Map<String, List<Client>> res = new HashMap<>();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i < 100000; i++) {
+			List<Client> clientList = new ArrayList<>();
+			for (int j = 0; j < 10; j++) {
+				Client client = new Client("111" + i, "aaa" + i, "bbb", "1111");
+				clientList.add(client);
+			}
+			res.put("111" + i, clientList);
+		}
+		return res;
+	}
+
+	@Scheduled(fixedDelay = 100000)
 	public void updateCache() {
 		if (init) {
 			System.out.println("Going to clean client cache");
+			System.out.println("updateCache");
+			Map<String, List<Client>> data = getData(applicationProperties.useLocalCache());
+			clientRepository.loadData(data);
 			cachingService.evictAllCaches();
 		}
 	}
-
 
 }
