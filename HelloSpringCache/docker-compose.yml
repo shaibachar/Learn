@@ -12,3 +12,7 @@ services:
     environment:
       - application.envName="envName"
       - application.myPort=123456
+  cacheclient:
+    image: client
+    ports:
+      - "3000:3000"

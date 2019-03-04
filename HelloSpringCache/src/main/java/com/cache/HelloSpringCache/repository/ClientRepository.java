@@ -12,4 +12,6 @@ public interface ClientRepository {
 	public List<Client> getAllClients();
 
 	void loadData(Map<String, Client> data);
+
+	public String createClient(Client client);
 }

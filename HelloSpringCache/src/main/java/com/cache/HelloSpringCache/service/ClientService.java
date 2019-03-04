@@ -29,4 +29,9 @@ public class ClientService {
 		return allClients;
 	}
 
+	public String createClient(Client client) {
+		String res = clientRepository.createClient(client);
+		return res;
+	}
+
 }

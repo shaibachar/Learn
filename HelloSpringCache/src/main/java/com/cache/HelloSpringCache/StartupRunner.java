@@ -15,8 +15,6 @@ import com.cache.HelloSpringCache.model.Client;
 import com.cache.HelloSpringCache.repository.ClientRepository;
 import com.cache.HelloSpringCache.service.CachingService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Component
 @ConditionalOnProperty(prefix = "job.autorun", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class StartupRunner implements CommandLineRunner {

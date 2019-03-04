@@ -51,4 +51,10 @@ public class ClientRepositoryImpl implements ClientRepository {
             throw new IllegalStateException(e);
         }
     }
+
+	@Override
+	public String createClient(Client client) {
+		data.put(client.getFirstName(),client);
+		return client.toString();
+	}
 }
