@@ -1,5 +1,7 @@
 package com.example.auth0.domain;
 
+import java.util.Properties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +14,18 @@ public class ApplicationUser {
 	private long id;
 	private String username;
 	private String password;
+	private Properties userProperties;
 
 	public long getId() {
 		return id;
+	}
+
+	public Properties getUserProperties() {
+		return userProperties;
+	}
+
+	public void setUserProperties(Properties userProperties) {
+		this.userProperties = userProperties;
 	}
 
 	public String getUsername() {
