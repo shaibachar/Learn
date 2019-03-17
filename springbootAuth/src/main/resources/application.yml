@@ -5,3 +5,7 @@ application:
     tokenPrefix: 'Bearer '
     headerString: Authorization
     signUpUrl: /users/sign-up
+
+    
+spring:
+  main:    lazy-initialization: false
