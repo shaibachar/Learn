@@ -10,7 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -22,7 +21,6 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.auth0.config.SecurityProperties;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
-
 	
 	private AuthenticationManager authManager;
 	private SecurityProperties securityProperties;
