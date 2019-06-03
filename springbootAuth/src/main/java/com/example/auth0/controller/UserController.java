@@ -18,33 +18,35 @@ import com.example.auth0.repository.ApplicationUserRepository;
 import com.example.auth0.security.JwtAuthentication;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
-	private ApplicationUserRepository applicationUserRepository;
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private ApplicationUserRepository applicationUserRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	public UserController(ApplicationUserRepository applicationUserRepository,
-			BCryptPasswordEncoder bCryptPasswordEncoder) {
-		this.applicationUserRepository = applicationUserRepository;
-		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-	}
+    public UserController(ApplicationUserRepository applicationUserRepository,
+                          BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.applicationUserRepository = applicationUserRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
-	@PostMapping("/sign-up")
-	public void signUp(@RequestBody ApplicationUser user) {
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		applicationUserRepository.save(user);
-	}
+    @PostMapping("/sign-up")
+    public void signUp(@RequestBody ApplicationUser user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        if (applicationUserRepository.findByUsername(user.getUsername()) == null) {
+            applicationUserRepository.save(user);
+        }
+    }
 
-	@GetMapping("/userProperties")
-	public List<String> getUserProperties() {
-		List<String> res = new ArrayList<>();
-		JwtAuthentication authentication = (JwtAuthentication) SecurityContextHolder.getContext().getAuthentication();
-		Properties properties = authentication.getProperties();
-		for (Object key : properties.keySet()) {
-			Object value = properties.get(key);
-			res.add(MessageFormat.format("key:{0}  value:{1}", key, value));
-		}
-		return res;
-	}
+    @GetMapping("/userProperties")
+    public List<String> getUserProperties() {
+        List<String> res = new ArrayList<>();
+        JwtAuthentication authentication = (JwtAuthentication) SecurityContextHolder.getContext().getAuthentication();
+        Properties properties = authentication.getProperties();
+        for (Object key : properties.keySet()) {
+            Object value = properties.get(key);
+            res.add(MessageFormat.format("key:{0}  value:{1}", key, value));
+        }
+        return res;
+    }
 }

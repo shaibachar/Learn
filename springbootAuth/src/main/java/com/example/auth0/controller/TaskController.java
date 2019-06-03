@@ -16,7 +16,7 @@ import com.example.auth0.repository.TaskRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/api/tasks")
 public class TaskController {
 
     private TaskRepository taskRepository;
