@@ -18,7 +18,7 @@ import com.example.auth0.repository.ApplicationUserRepository;
 import com.example.auth0.security.JwtAuthentication;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 
     private ApplicationUserRepository applicationUserRepository;
