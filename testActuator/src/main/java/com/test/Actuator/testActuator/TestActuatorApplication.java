@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TestActuatorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TestActuatorApplication.class, args);
+//		SpringApplication.run(TestActuatorApplication.class, args);
 	}
 }

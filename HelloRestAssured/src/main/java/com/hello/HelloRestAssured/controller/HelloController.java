@@ -24,14 +24,9 @@ public class HelloController {
 
 	@GetMapping("/helloWorld")
 	public String helloWorld() {
-		return "hello";
+		return "Hello World";
 	}
 
-	@GetMapping("/getAllCustomers")
-	public ResponseEntity<List<Customer>> getAllCustomers() {
-		List<Customer> allCustomers = helloService.getAllCustomers();
-		HttpHeaders httpHeaders = new HttpHeaders();
-		return new ResponseEntity<List<Customer>>(allCustomers,httpHeaders,HttpStatus.OK);
-	}
+
 
 }
