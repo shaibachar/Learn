@@ -15,6 +15,7 @@ import java.util.List;
 
 @Service
 public class ExcelServices {
+    public static final String WORKBOOK_SHEET = "Data";
     private String[] columns;
     private List<Employee> employees;
 
@@ -38,6 +39,88 @@ public class ExcelServices {
         dateOfBirth.set(1987, 4, 18);
         employees.add(new Employee("Steve Maiden", "steve@example.com",
                 dateOfBirth.getTime(), 1800000.0));
+
+        dateOfBirth.set(1987, 5, 18);
+        employees.add(new Employee("Steve1 Maiden", "steve@example.com",
+                dateOfBirth.getTime(), -1800000.0));
+
+        dateOfBirth.set(1988, 5, 18);
+        employees.add(new Employee("    Steve3 Maiden", "steve@example.com    ",
+                dateOfBirth.getTime(), -1800000));
+
+    }
+
+    /**
+     * @param filePath
+     * @throws InvalidFormatException
+     * @throws IOException
+     */
+    public void trimExistingWorkbook(String filePath) throws InvalidFormatException, IOException {
+        // Obtain a workbook from the excel file
+        File file = new File(filePath);
+        Workbook workbook = WorkbookFactory.create(file);
+
+        // Get Sheet
+        Sheet sheet = workbook.getSheetAt(0);
+
+        // Create a Font for styling header cells
+        Font headerFont = workbook.createFont();
+        headerFont.setBold(false);
+        headerFont.setFontHeightInPoints((short) 14);
+        headerFont.setColor(IndexedColors.BLACK.getIndex());
+
+        // Create a CellStyle with the font
+        CellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setFont(headerFont);
+
+
+        int firstRowNum = sheet.getFirstRowNum();
+        int lastRowNum = sheet.getLastRowNum();
+
+        for (int i = firstRowNum; i < lastRowNum; i++) {
+            Row row = sheet.getRow(i);
+            if (row == null) {
+                continue;
+            }
+            short lastCellNum = row.getLastCellNum();
+            for (int j = 0; j < lastCellNum; j++) {
+                Cell cell = row.getCell(j);
+                if (cell == null) {
+                    continue;
+                }
+                CellType cellTypeEnum = cell.getCellTypeEnum();
+                if (!cellTypeEnum.equals(CellType.STRING)) {
+                    cell.setCellStyle(cellStyle);
+                    continue;
+                }
+                String stringCellValue = cell.getStringCellValue();
+                if (!stringCellValue.isEmpty()) {
+
+                    try {
+                        double number = Double.parseDouble(stringCellValue);
+                        cell.setCellType(CellType.NUMERIC);
+                        cell.setCellValue(number);
+                        continue;
+                    } catch (Exception e) {
+                        // do nothing
+                    }
+
+//                    cell.setCellType(CellType.STRING);
+                    cell.setCellValue(stringCellValue.trim());
+                    cell.setCellStyle(cellStyle);
+                }
+
+            }
+        }
+
+        // Write the output to the file
+        FileOutputStream fileOut = new FileOutputStream(filePath);
+        workbook.write(fileOut);
+        fileOut.close();
+
+
+        // Closing the workbook
+        workbook.close();
     }
 
     /**
@@ -50,7 +133,7 @@ public class ExcelServices {
         Workbook workbook = WorkbookFactory.create(new File(filePath));
 
         // Get Sheet at index 0
-        Sheet sheet = workbook.getSheetAt(0);
+        Sheet sheet = workbook.getSheet(WORKBOOK_SHEET);
 
         // Get Row at index 1
         Row row = sheet.getRow(1);
@@ -66,11 +149,11 @@ public class ExcelServices {
         cell.setCellType(CellType.STRING);
         cell.setCellValue("Updated Value");
 
-        // Write the output to the file
-        FileOutputStream fileOut = new FileOutputStream("existing-spreadsheet.xlsx");
+      /*  // Write the output to the file
+        FileOutputStream fileOut = new FileOutputStream(EXISTING_SPREADSHEET_XLSX);
         workbook.write(fileOut);
         fileOut.close();
-
+*/
         // Closing the workbook
         workbook.close();
     }
@@ -89,7 +172,7 @@ public class ExcelServices {
         CreationHelper createHelper = workbook.getCreationHelper();
 
         // Create a Sheet
-        Sheet sheet = workbook.createSheet("Employee");
+        Sheet sheet = workbook.createSheet(WORKBOOK_SHEET);
 
         // Create a Font for styling header cells
         Font headerFont = workbook.createFont();
@@ -117,21 +200,17 @@ public class ExcelServices {
 
         // Create Other rows and cells with employees data
         int rowNum = 1;
+        int row_index = 1;
         for (Employee employee : employees) {
             Row row = sheet.createRow(rowNum++);
+            row.createCell(row_index).setCellValue(employee.getName());
+            row.createCell(row_index + 1).setCellValue(employee.getEmail());
 
-            row.createCell(0)
-                    .setCellValue(employee.getName());
-
-            row.createCell(1)
-                    .setCellValue(employee.getEmail());
-
-            Cell dateOfBirthCell = row.createCell(2);
+            Cell dateOfBirthCell = row.createCell(row_index + 2);
             dateOfBirthCell.setCellValue(employee.getDateOfBirth());
             dateOfBirthCell.setCellStyle(dateCellStyle);
 
-            row.createCell(3)
-                    .setCellValue(employee.getSalary());
+            row.createCell(row_index + 3).setCellValue(employee.getSalary());
         }
 
         // Resize all columns to fit the content size

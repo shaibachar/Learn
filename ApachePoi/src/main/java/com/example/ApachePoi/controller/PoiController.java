@@ -16,6 +16,17 @@ public class PoiController {
         this.excelServices = excelServices;
     }
 
+    @PostMapping("/trimFile/{filePath}")
+    public ResponseEntity trimFile(@PathVariable String filePath) {
+        try {
+            excelServices.trimExistingWorkbook(filePath);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+        return ResponseEntity.ok("ok");
+        //"existing-spreadsheet.xlsx"
+    }
+
     @PostMapping("/createFile/{filePath}")
     public ResponseEntity createFile(@PathVariable String filePath) {
         try {
