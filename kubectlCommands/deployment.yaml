@@ -1,0 +1,32 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: springcache
+spec:
+  selector:
+    app: springcache
+  ports:
+  - protocol: TCP
+    port: 8090
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springcache
+spec:
+  selector:
+      matchLabels:
+        app: springcache
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: springcache
+    spec:
+      containers:
+        - name: springcache
+          image: springcache:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
