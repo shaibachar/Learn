@@ -1,6 +1,7 @@
 package com.example.ImageJ.ImageJ.controller;
 
 import com.example.ImageJ.ImageJ.services.ApplicationService;
+import com.example.ImageJ.ImageJ.services.util.GeneralUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
@@ -31,7 +33,7 @@ public class ApplicationController {
             String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
             InputStream inputStream = new ByteArrayInputStream(bytes);
-            String result = applicationService.doOcr(inputStream);
+            String result = applicationService.doOcrRightUpperCorner(inputStream);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             logger.error("Error while loading image ", e);
@@ -40,15 +42,18 @@ public class ApplicationController {
     }
 
     @PostMapping("/uploadImage/{partsCount}")
-    public ResponseEntity<String> uploadImage(@RequestPart("file") MultipartFile file,@PathVariable("partsCount") Integer partsCount) {
+    public ResponseEntity<String> uploadImage(@RequestPart("file") MultipartFile file, @PathVariable("partsCount") Integer partsCount) {
         try {
             String fileName = file.getOriginalFilename();
             byte[] bytes = file.getBytes();
-            byte[] result = applicationService.processImage(bytes,partsCount);
+            BufferedImage bufferedImage = GeneralUtils.byteArrayToBufferedImage(bytes);
+            BufferedImage result = applicationService.processRightUpperCornerImage(bufferedImage, partsCount);
             return ResponseEntity.ok().body("success");
         } catch (Exception e) {
             logger.error("Error while loading image ", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+
 }
