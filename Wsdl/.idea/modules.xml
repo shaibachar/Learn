@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/wsdl-consume/WsdlConsume.iml" filepath="$PROJECT_DIR$/wsdl-consume/WsdlConsume.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wsdl-produce/WsdlProduce.iml" filepath="$PROJECT_DIR$/wsdl-produce/WsdlProduce.iml" />
+      <module fileurl="file://$PROJECT_DIR$/learn-wsdl-spring.iml" filepath="$PROJECT_DIR$/learn-wsdl-spring.iml" />
+    </modules>
+  </component>
+</project>
