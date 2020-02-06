@@ -1,0 +1,7 @@
+
+D
+ws_consuming/pom.xml,5\0\503759fb01872b3ef9ebe203d980da041471e994
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+D
+ws_producing/pom.xml,9\8\9802257a6a784132e2c05188d022c37743c51499

@@ -1,0 +1,3241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.dbisrael.co.il" xmlns:s1="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.dbisrael.co.il" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service is provided by D&amp;B to enable data integration for customers and partners</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.dbisrael.co.il">
+      <s:import namespace="http://tempuri.org/" />
+      <s:element name="WMGetMyIP">
+        <s:complexType />
+      </s:element>
+      <s:element name="WMGetMyIPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WMGetMyIPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetOneMonitoredCompanyScore">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="duns" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetOneMonitoredCompanyScoreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetOneMonitoredCompanyScoreResult" type="tns:Company" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Company">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Duns" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rasham" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScoreUpdate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InterOpServiceStatus">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InterOpServiceStatusBase" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="InterOpServiceStatusBase">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StatusOk" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DNBWMGetOrderedPartsFileURL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="orderID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetOrderedPartsFileURLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetOrderedPartsFileURLResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetCompanyScoreByString">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="option" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetCompanyScoreByStringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetCompanyScoreByStringResult" type="tns:Company" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetCompanyScore">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="number" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="option" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetCompanyScoreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetCompanyScoreResult" type="tns:Company" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetMonitoredCompaniesScore">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="option" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetMonitoredCompaniesScoreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetMonitoredCompaniesScoreResult" type="tns:ArrayOfCompany" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCompany">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Company" nillable="true" type="tns:Company" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DNBWMGetMonitoredCompaniesScoreAndMaxcredit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="option" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetMonitoredCompaniesScoreAndMaxcreditResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetMonitoredCompaniesScoreAndMaxcreditResult" type="tns:ArrayOfCompany_Extended" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCompany_Extended">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Company_Extended" nillable="true" type="tns:Company_Extended" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Company_Extended">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Company">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MCdesc" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaxCreditNum" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="MCdate" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DNBWMGetMonitoredCompaniesScoreHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetMonitoredCompaniesScoreHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetMonitoredCompaniesScoreHistoryResult" type="tns:ArrayOfCompany" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetCompanyScoreHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetCompanyScoreHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetCompanyScoreHistoryResult" type="tns:ArrayOfCompany" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetUserMonitoredCompanies">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetUserMonitoredCompaniesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetUserMonitoredCompaniesResult" type="tns:ArrayOfCompany" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetUserMonitoredCompaniesDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="option" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetUserMonitoredCompaniesDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetUserMonitoredCompaniesDetailsResult" type="tns:ArrayOfCompany" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMAddMonitoredCompanies">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compArr" type="tns:ArrayOfCompany" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMAddMonitoredCompaniesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMAddMonitoredCompaniesResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetMonitoredCompaniesAlerts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="option" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetMonitoredCompaniesAlertsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetMonitoredCompaniesAlertsResult" type="tns:ArrayOfAlert" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAlert">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Alert" nillable="true" type="tns:Alert" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Alert">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SerialNum" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Duns" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AlertDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LevelCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RepDuns" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Summary" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LateDays" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LateSum" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KindCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MakorRashi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MakorTchum" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="WMCheckLimitedCompAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bankCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="branchCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="accountCode" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="car" type="tns:ArrayOfCheckAccountRule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCheckAccountRule">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CheckAccountRule" nillable="true" type="tns:CheckAccountRule" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CheckAccountRule">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PeriodTime" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckStatus" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckComment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="WMCheckLimitedCompAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WMCheckLimitedCompAccountResult" type="tns:CheckAccountResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CheckAccountResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="carArr" type="tns:ArrayOfCheckAccountRule" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckAccountRes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckAccountResValue" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RejectFactors" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="WMCheckLimitedCompAccountExt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bankCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="branchCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="accountCode" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="car" type="tns:ArrayOfCheckAccountRule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMCheckLimitedCompAccountExtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WMCheckLimitedCompAccountExtResult" type="tns:CheckAccountResultExt" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CheckAccountResultExt">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CheckAccountResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="fromDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="toDate" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="WMCheckSeverlyLimitedAccountById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="idNum" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMCheckSeverlyLimitedAccountByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WMCheckSeverlyLimitedAccountByIdResult" type="tns:severlyLimitedAccount" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="severlyLimitedAccount">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="isValidId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="isRestricted" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="wasBlockedButNotNow" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="restrictionCancel" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CitizenType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dateEnd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dateEntery" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dateUpdate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="WMCheckMonitoredCompamy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="threshold" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="compRuleArr" type="tns:ArrayOfCheckCompanyRule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCheckCompanyRule">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CheckCompanyRule" nillable="true" type="tns:CheckCompanyRule" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CheckCompanyRule">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Period" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importance" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CheckStatus" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CheckComment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultValue" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="WMCheckMonitoredCompamyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WMCheckMonitoredCompamyResult" type="tns:CheckCompanyResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CheckCompanyResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="compRuleArr" type="tns:ArrayOfCheckCompanyRule" />
+          <s:element minOccurs="1" maxOccurs="1" name="Duns" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Rasham" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Score" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasRightToFollows" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RejectFactors" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FactorsDataMissing" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InFollows" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GoNoGo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalMark" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResultMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="WMCheckCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="threshold" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="addToMonitor" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="compRuleArr" type="tns:ArrayOfCheckCompanyRule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMCheckCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WMCheckCompanyResult" type="tns:CheckCompanyResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMCheckCompanyExtended">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="threshold" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="addToMonitor" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="compRuleArr" type="tns:ArrayOfCheckCompanyRule" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TillDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMCheckCompanyExtendedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WMCheckCompanyExtendedResult" type="tns:CheckCompanyResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prodCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="priority" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMOrderReportResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderReportToPDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prodCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="priority" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderReportToPDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMOrderReportToPDFResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderReportToMail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prodCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="priority" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderReportToMailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMOrderReportToMailResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMCheckReportAvailability">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prodCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMCheckReportAvailabilityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DNBWMCheckReportAvailabilityResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMAutoAddMonitoredCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMAutoAddMonitoredCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DNBWMAutoAddMonitoredCompanyResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMAddCompaniesToMonitoredList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="requestItems" type="tns:ArrayOfRequestMonitorCompany" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRequestMonitorCompany">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RequestMonitorCompany" nillable="true" type="tns:RequestMonitorCompany" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RequestMonitorCompany">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InterOpServiceStatus">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ListOfCustomerNumbers" type="tns:ArrayOfString" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DNBWMAddCompaniesToMonitoredListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMAddCompaniesToMonitoredListResult" type="tns:ArrayOfRequestMonitorCompany" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMCheckIfAutomaticRule4">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMCheckIfAutomaticRule4Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DNBWMCheckIfAutomaticRule4Result" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetMonitoredCompanySic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="duns" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetMonitoredCompanySicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetMonitoredCompanySicResult" type="tns:ArrayOfSic" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Sic" nillable="true" type="tns:Sic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Sic">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SicCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SicDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DNBWMGetCompanySic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetCompanySicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetCompanySicResult" type="tns:ArrayOfSic" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetCompanyAlerts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="toDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetCompanyAlertsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetCompanyAlertsResult" type="tns:ArrayOfAlert" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetMonitoredCompanyAlerts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="toDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetMonitoredCompanyAlertsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetMonitoredCompanyAlertsResult" type="tns:ArrayOfAlert" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetCutAlerts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cutId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="toDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMGetCutAlertsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMGetCutAlertsResult" type="tns:ArrayOfAlert" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportUpdateDates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="i_subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="i_prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="i_userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="i_passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="i_number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="i_type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="i_reportCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportUpdateDatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportUpdateDatesResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="o_listChapWithDates" type="tns:ArrayOfArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="o_status" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCheckItVersionExtended">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userVersion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCheckItVersionExtendedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCheckItVersionExtendedResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCheckItVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCheckItVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCheckItVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMAddCustomerNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="custNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMAddCustomerNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderReportPart">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="partEnum" type="tns:DataPartsUnMonitoredCompany" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DataPartsUnMonitoredCompany">
+        <s:restriction base="s:string">
+          <s:enumeration value="CompanyDetailsPartUnMonitoredCompany" />
+          <s:enumeration value="BusinessPartUnMonitoredCompany" />
+          <s:enumeration value="SicPartUnMonitoredCompany" />
+          <s:enumeration value="ManagersSummaryPartUnMonitoredCompany" />
+          <s:enumeration value="RankPartUnMonitoredCompany" />
+          <s:enumeration value="MaxCreditPartUnMonitoredCompany" />
+          <s:enumeration value="RatingCommentaryPartUnMonitoredCompany" />
+          <s:enumeration value="ScorePartUnMonitoredCompany" />
+          <s:enumeration value="CompareBySicPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersTreePartUnMonitoredCompany" />
+          <s:enumeration value="SpecialEventsPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsNegPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsPosPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsMediaPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsLegalPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsImportantPartUnMonitoredCompany" />
+          <s:enumeration value="OperationSummaryPartUnMonitoredCompany" />
+          <s:enumeration value="MarketingDistributionPartUnMonitoredCompany" />
+          <s:enumeration value="CustomersPartUnMonitoredCompany" />
+          <s:enumeration value="ProjectPartUnMonitoredCompany" />
+          <s:enumeration value="EmployeesPartUnMonitoredCompany" />
+          <s:enumeration value="FacilitiesPartUnMonitoredCompany" />
+          <s:enumeration value="OperationAppendixPartUnMonitoredCompany" />
+          <s:enumeration value="BuyPaySummaryPartUnMonitoredCompany" />
+          <s:enumeration value="BuyPayDetailsPartUnMonitoredCompany" />
+          <s:enumeration value="SuppliersReportsPartUnMonitoredCompany" />
+          <s:enumeration value="SuppliersPartUnMonitoredCompany" />
+          <s:enumeration value="ProfitLossPartUnMonitoredCompany" />
+          <s:enumeration value="CashFlowPartUnMonitoredCompany" />
+          <s:enumeration value="BankPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersSummaryPartUnMonitoredCompany" />
+          <s:enumeration value="LegalStatusPartUnMonitoredCompany" />
+          <s:enumeration value="ContinuedCompanyPartUnMonitoredCompany" />
+          <s:enumeration value="SharesCapitalPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersByCompanyPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersByRegisterPartUnMonitoredCompany" />
+          <s:enumeration value="ManagersByRegisterPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersChangesPartUnMonitoredCompany" />
+          <s:enumeration value="ManagersPartUnMonitoredCompany" />
+          <s:enumeration value="RelatedCompaniesPartUnMonitoredCompany" />
+          <s:enumeration value="AssetsPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsMoreInfoPartUnMonitoredCompany" />
+          <s:enumeration value="FinancingDetailsComparePartUnMonitoredCompany" />
+          <s:enumeration value="AlertsSumPartUnMonitoredCompany" />
+          <s:enumeration value="SimilarCompaniesPartUnMonitoredCompany" />
+          <s:enumeration value="CompareByCityPartUnMonitoredCompany" />
+          <s:enumeration value="CompareByEmployeesPartUnMonitoredCompany" />
+          <s:enumeration value="CompareByEstablishPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaMediaPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaLegalPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsStockMarketPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaStockMarketPartUnMonitoredCompany" />
+          <s:enumeration value="OwnedCompaniesPartUnMonitoredCompany" />
+          <s:enumeration value="CreditOpinionPartUnMonitoredCompany" />
+          <s:enumeration value="AddressPartUnMonitoredCompany" />
+          <s:enumeration value="WebAddressPartUnMonitoredCompany" />
+          <s:enumeration value="PhonesPartUnMonitoredCompany" />
+          <s:enumeration value="NamesPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsPartUnMonitoredCompany" />
+          <s:enumeration value="RegisPartUnMonitoredCompany" />
+          <s:enumeration value="RankSpecialPartUnMonitoredCompany" />
+          <s:enumeration value="FinancingSummaryPartUnMonitoredCompany" />
+          <s:enumeration value="FinancingDetailsPartUnMonitoredCompany" />
+          <s:enumeration value="BalanceSheetPartUnMonitoredCompany" />
+          <s:enumeration value="LegalStatusExtendedPartUnMonitoredCompany" />
+          <s:enumeration value="ActivityPartUnMonitoredCompany" />
+          <s:enumeration value="ScoreCurrentPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsIndicationPartUnMonitoredCompany" />
+          <s:enumeration value="CustomersAndSuppliers" />
+          <s:enumeration value="CrossingReportCompaniesNotFollowed" />
+          <s:enumeration value="OwnersByRegister2LevelPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersByRegister1LevelWeightedPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsNegExtlPartUnMonitoredCompany" />
+          <s:enumeration value="RelatedCompaniesExPartUnMonitoredCompany" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DNBWMOrderReportPartResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMOrderReportPartResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderReportPartCollection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="partEnumList" type="tns:ArrayOfDataPartsUnMonitoredCompany" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDataPartsUnMonitoredCompany">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataPartsUnMonitoredCompany" type="tns:DataPartsUnMonitoredCompany" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DNBWMOrderReportPartCollectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMOrderReportPartCollectionResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderMonitoredCompanyReportPart">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="duns" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="partEnum" type="tns:DataPartsMonitoredCompany" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DataPartsMonitoredCompany">
+        <s:restriction base="s:string">
+          <s:enumeration value="CompanyDetailsPartMonitoredCompany" />
+          <s:enumeration value="BusinessPartMonitoredCompany" />
+          <s:enumeration value="SicPartMonitoredCompany" />
+          <s:enumeration value="ManagersSummaryPartMonitoredCompany" />
+          <s:enumeration value="RankPartMonitoredCompany" />
+          <s:enumeration value="MaxCreditPartMonitoredCompany" />
+          <s:enumeration value="RatingCommentaryPartMonitoredCompany" />
+          <s:enumeration value="ScorePartMonitoredCompany" />
+          <s:enumeration value="CompareBySicPartMonitoredCompany" />
+          <s:enumeration value="OwnersTreePartMonitoredCompany" />
+          <s:enumeration value="SpecialEventsPartMonitoredCompany" />
+          <s:enumeration value="AlertsNegPartMonitoredCompany" />
+          <s:enumeration value="AlertsPosPartMonitoredCompany" />
+          <s:enumeration value="AlertsMediaPartMonitoredCompany" />
+          <s:enumeration value="AlertsLegalPartMonitoredCompany" />
+          <s:enumeration value="AlertsImportantPartMonitoredCompany" />
+          <s:enumeration value="OperationSummaryPartMonitoredCompany" />
+          <s:enumeration value="MarketingDistributionPartMonitoredCompany" />
+          <s:enumeration value="CustomersPartMonitoredCompany" />
+          <s:enumeration value="ProjectPartMonitoredCompany" />
+          <s:enumeration value="EmployeesPartMonitoredCompany" />
+          <s:enumeration value="FacilitiesPartMonitoredCompany" />
+          <s:enumeration value="OperationAppendixPartMonitoredCompany" />
+          <s:enumeration value="BuyPaySummaryPartMonitoredCompany" />
+          <s:enumeration value="BuyPayDetailsPartMonitoredCompany" />
+          <s:enumeration value="SuppliersReportsPartMonitoredCompany" />
+          <s:enumeration value="SuppliersPartMonitoredCompany" />
+          <s:enumeration value="FinancingSummaryPartMonitoredCompany" />
+          <s:enumeration value="FinancingDetailsPartMonitoredCompany" />
+          <s:enumeration value="BalanceSheetPartMonitoredCompany" />
+          <s:enumeration value="ProfitLossPartMonitoredCompany" />
+          <s:enumeration value="CashFlowPartMonitoredCompany" />
+          <s:enumeration value="BankPartMonitoredCompany" />
+          <s:enumeration value="OwnersSummaryPartMonitoredCompany" />
+          <s:enumeration value="LegalStatusPartMonitoredCompany" />
+          <s:enumeration value="ContinuedCompanyPartMonitoredCompany" />
+          <s:enumeration value="SharesCapitalPartMonitoredCompany" />
+          <s:enumeration value="OwnersByCompanyPartMonitoredCompany" />
+          <s:enumeration value="OwnersByRegisterPartMonitoredCompany" />
+          <s:enumeration value="ManagersByRegisterPartMonitoredCompany" />
+          <s:enumeration value="OwnersChangesPartMonitoredCompany" />
+          <s:enumeration value="ManagersPartMonitoredCompany" />
+          <s:enumeration value="RelatedCompaniesPartMonitoredCompany" />
+          <s:enumeration value="AssetsPartMonitoredCompany" />
+          <s:enumeration value="AlertsMoreInfoPartMonitoredCompany" />
+          <s:enumeration value="FinancingDetailsComparePartMonitoredCompany" />
+          <s:enumeration value="AlertsSumPartMonitoredCompany" />
+          <s:enumeration value="SimilarCompaniesPartMonitoredCompany" />
+          <s:enumeration value="CompareByCityPartMonitoredCompany" />
+          <s:enumeration value="CompareByEmployeesPartMonitoredCompany" />
+          <s:enumeration value="CompareByEstablishPartMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaMediaPartMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaLegalPartMonitoredCompany" />
+          <s:enumeration value="AlertsStockMarketPartMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaStockMarketPartMonitoredCompany" />
+          <s:enumeration value="OwnedCompaniesPartMonitoredCompany" />
+          <s:enumeration value="CreditOpinionPartMonitoredCompany" />
+          <s:enumeration value="AddressPartMonitoredCompany" />
+          <s:enumeration value="WebAddressPartMonitoredCompany" />
+          <s:enumeration value="PhonesPartMonitoredCompany" />
+          <s:enumeration value="NamesPartMonitoredCompany" />
+          <s:enumeration value="AlertsPartMonitoredCompany" />
+          <s:enumeration value="RegisPartMonitoredCompany" />
+          <s:enumeration value="RankSpecialPartMonitoredCompany" />
+          <s:enumeration value="LegalStatusExtendedPartMonitoredCompany" />
+          <s:enumeration value="ActivityPartMonitoredCompany" />
+          <s:enumeration value="AlertsIndicationPartMonitoredCompany" />
+          <s:enumeration value="ScoreCurrentPartMonitoredCompany" />
+          <s:enumeration value="CustomersAndSuppliers" />
+          <s:enumeration value="CrossingReportCompaniesFollowed" />
+          <s:enumeration value="OwnersByRegister2LevelPartMonitoredCompany" />
+          <s:enumeration value="OwnersByRegister1LevelWeightedPartMonitoredCompany" />
+          <s:enumeration value="AlertsNegExtlPartMonitoredCompany" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DNBWMOrderMonitoredCompanyReportPartResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMOrderMonitoredCompanyReportPartResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderMonitoredCompaniesReportPart">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="partEnum" type="tns:DataPartsMonitoredCompany" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderMonitoredCompaniesReportPartResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMOrderMonitoredCompaniesReportPartResult" type="tns:ArrayOfPartWithDuns" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPartWithDuns">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PartWithDuns" nillable="true" type="tns:PartWithDuns" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PartWithDuns">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Part" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Duns" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DNBWMOrderBulkCheckMonitoredCompaniesFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="threshold" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="compRuleArr" type="tns:ArrayOfCheckCompanyRule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderBulkCheckMonitoredCompaniesFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DNBWMOrderBulkCheckMonitoredCompaniesFileResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderMonitoredCompaniesReportPartsFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="partsEnum" type="tns:ArrayOfDataPartsMonitoredCompany" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDataPartsMonitoredCompany">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataPartsMonitoredCompany" type="tns:DataPartsMonitoredCompany" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DNBWMOrderMonitoredCompaniesReportPartsFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DNBWMOrderMonitoredCompaniesReportPartsFileResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderMonitoredCompanyObligo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="duns" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMOrderMonitoredCompanyObligoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DNBWMOrderMonitoredCompanyObligoResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoubleCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idNum" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="compRuleArr" type="tns:ArrayOfCheckCompanyRule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoubleCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DoubleCheckResult" type="tns:CheckCompanyResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMCompanySearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Duns" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Manager" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Regis" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMCompanySearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WMCompanySearchResult" type="tns:ArrayOfMatcherCompanyResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMatcherCompanyResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MatcherCompanyResult" nillable="true" type="tns:MatcherCompanyResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MatcherCompanyResult">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:MatcherCompanyFound">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Regis" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="WMGetHoldingsById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMGetHoldingsByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WMGetHoldingsByIdResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DNBWMCheckUserRight">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userNameToCheck" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWordToCheck" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="protuctToCheck" type="tns:ProductsListEnum" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ProductsListEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="ResultList" />
+          <s:enumeration value="ExportAndMailMerge" />
+          <s:enumeration value="Print" />
+          <s:enumeration value="ExportToPalm" />
+          <s:enumeration value="ExportToExcel" />
+          <s:enumeration value="ExportToXML" />
+          <s:enumeration value="ExportToText" />
+          <s:enumeration value="ExportToWord" />
+          <s:enumeration value="ExportToHTML" />
+          <s:enumeration value="CutByRank13" />
+          <s:enumeration value="CutByRank4" />
+          <s:enumeration value="CutByRankOther" />
+          <s:enumeration value="CutByBankCode" />
+          <s:enumeration value="Export1" />
+          <s:enumeration value="Export2" />
+          <s:enumeration value="Export3" />
+          <s:enumeration value="ResultSlicing" />
+          <s:enumeration value="MailMergeNotDeploy" />
+          <s:enumeration value="CompanySearch" />
+          <s:enumeration value="ManagerSearch" />
+          <s:enumeration value="ReportByMail" />
+          <s:enumeration value="ReportByFax" />
+          <s:enumeration value="CompanyDetailsReportWS" />
+          <s:enumeration value="CompanyDetailsReportMonitoredcompanyWS" />
+          <s:enumeration value="MonitoredCompanyAlertWS" />
+          <s:enumeration value="Analyst" />
+          <s:enumeration value="Proflie" />
+          <s:enumeration value="CompactOld" />
+          <s:enumeration value="ShortRashamReport" />
+          <s:enumeration value="FullRashamReport" />
+          <s:enumeration value="OrdersHistoryViewordersinsubslevel" />
+          <s:enumeration value="DoubleCheck" />
+          <s:enumeration value="Compact" />
+          <s:enumeration value="Profile" />
+          <s:enumeration value="AnalystImmediate" />
+          <s:enumeration value="AnalystInquiry" />
+          <s:enumeration value="AnalystInquiryRenew" />
+          <s:enumeration value="MaxCreditMonitoredCompany" />
+          <s:enumeration value="MaxCreditUnmonitoredCompany" />
+          <s:enumeration value="MonitoredCompaniesScoreAndMaxcredit" />
+          <s:enumeration value="CreditOpinion" />
+          <s:enumeration value="ImmidiateSupply" />
+          <s:enumeration value="UserAlerts" />
+          <s:enumeration value="UserSonsAlerts" />
+          <s:enumeration value="SubsAlerts" />
+          <s:enumeration value="AlertsAllCompanies" />
+          <s:enumeration value="AsciiAlerts" />
+          <s:enumeration value="GetSubsReportedAlerts" />
+          <s:enumeration value="SendAlertsDay" />
+          <s:enumeration value="AddCompanyTracking" />
+          <s:enumeration value="InternetAlerts" />
+          <s:enumeration value="PositiveEventsAll" />
+          <s:enumeration value="AlertsBySMS" />
+          <s:enumeration value="OldAlertsSystem" />
+          <s:enumeration value="BusinessIntelligenceMonitoredCompany" />
+          <s:enumeration value="BusinessIntelligenceUnMonitoredCompany" />
+          <s:enumeration value="BusinessIntelligenceWithScoreMonitoredCompany" />
+          <s:enumeration value="BusinessIntelligenceWithScoreUnMonitoredCompany" />
+          <s:enumeration value="PressReportsMonitoredCompany" />
+          <s:enumeration value="PressReportsUnMonitoredCompany" />
+          <s:enumeration value="OwnerShipTableByManager" />
+          <s:enumeration value="OwnerShipTableByUsage" />
+          <s:enumeration value="ManagerSearchbyRasham" />
+          <s:enumeration value="OwnerShipTreeScoreRank" />
+          <s:enumeration value="OwnerShipTreeManagers" />
+          <s:enumeration value="OwnerShipTableMonitoredCompany" />
+          <s:enumeration value="OwnerShipTableUnMonitoredCompany" />
+          <s:enumeration value="OwnerShipTreeMonitoredCompany" />
+          <s:enumeration value="OwnerShipTreeUnMonitoredCompany" />
+          <s:enumeration value="SubscriberLevelRiskManagement" />
+          <s:enumeration value="UserLevelRiskManagenent" />
+          <s:enumeration value="ManageChosenCut" />
+          <s:enumeration value="PortfolioManager" />
+          <s:enumeration value="SelectedCutAbove20Companies" />
+          <s:enumeration value="MarketingAnalyzer" />
+          <s:enumeration value="CompanyDetailsMonitoredCompany" />
+          <s:enumeration value="CompanyDetailsUnMonitoredCompany" />
+          <s:enumeration value="SearchScreen" />
+          <s:enumeration value="ComapnyTab" />
+          <s:enumeration value="EditingGlobalRemarks" />
+          <s:enumeration value="LimitedAccounts" />
+          <s:enumeration value="MyControl" />
+          <s:enumeration value="AddCommentstoownershiptable" />
+          <s:enumeration value="ExtendedLimitedAccounts" />
+          <s:enumeration value="DunsScoreMonitoredCompany" />
+          <s:enumeration value="DunsScoreUnMonitoredCompany" />
+          <s:enumeration value="DunsScorePortfolioGraphSubs" />
+          <s:enumeration value="DunsScorePortfolioGraphPrmt" />
+          <s:enumeration value="MultiLogin" />
+          <s:enumeration value="DisableUsersSettings" />
+          <s:enumeration value="permanentpassword" />
+          <s:enumeration value="AddCommentstoOrder" />
+          <s:enumeration value="SaveReport" />
+          <s:enumeration value="CompaniesFollowedWS" />
+          <s:enumeration value="MonitoredCompaniesScoreWS" />
+          <s:enumeration value="CompaniesDetailsWS" />
+          <s:enumeration value="AddCompaniesMonitorManualWS" />
+          <s:enumeration value="GetMonitorListWS" />
+          <s:enumeration value="GetUserPasswordWS" />
+          <s:enumeration value="CompaniesScoreWS" />
+          <s:enumeration value="CompanyAlertsWS" />
+          <s:enumeration value="CompanyDetailsWS" />
+          <s:enumeration value="ScoreHistoryWS" />
+          <s:enumeration value="ViewRejectfactorsWS" />
+          <s:enumeration value="ReportAvailabilityWS" />
+          <s:enumeration value="AddCompaniesMonitorAutoWS" />
+          <s:enumeration value="OrderReportsWS" />
+          <s:enumeration value="AllCompanyCheckWS" />
+          <s:enumeration value="MonitoredCompanyCheckWS" />
+          <s:enumeration value="LimitedAccountWS" />
+          <s:enumeration value="CompanyRankWS" />
+          <s:enumeration value="MonitoredCompanyAlertsWS" />
+          <s:enumeration value="AlertsByCutIDWS" />
+          <s:enumeration value="MonitoredCompanySICWS" />
+          <s:enumeration value="CompanySICWS" />
+          <s:enumeration value="CreditBiroWS" />
+          <s:enumeration value="ReportOrderToMailWS" />
+          <s:enumeration value="DataPartOrderWS" />
+          <s:enumeration value="ExtendedLimitedAccountsWS" />
+          <s:enumeration value="DatapartMonitoredCompanyWS" />
+          <s:enumeration value="MaxCreditMonitoredCompanyWS" />
+          <s:enumeration value="MonitoredScoreHistoryWS" />
+          <s:enumeration value="CompanyDetailsPartMonitoredCompany" />
+          <s:enumeration value="BusinessPartMonitoredCompany" />
+          <s:enumeration value="SicPartMonitoredCompany" />
+          <s:enumeration value="ManagersSummaryPartMonitoredCompany" />
+          <s:enumeration value="RankPartMonitoredCompany" />
+          <s:enumeration value="MaxCreditPartMonitoredCompany" />
+          <s:enumeration value="RatingCommentaryPartMonitoredCompany" />
+          <s:enumeration value="ScorePartMonitoredCompany" />
+          <s:enumeration value="CompareBySicPartMonitoredCompany" />
+          <s:enumeration value="OwnersTreePartMonitoredCompany" />
+          <s:enumeration value="SpecialEventsPartMonitoredCompany" />
+          <s:enumeration value="AlertsNegPartMonitoredCompany" />
+          <s:enumeration value="AlertsPosPartMonitoredCompany" />
+          <s:enumeration value="AlertsMediaPartMonitoredCompany" />
+          <s:enumeration value="AlertsLegalPartMonitoredCompany" />
+          <s:enumeration value="AlertsImportantPartMonitoredCompany" />
+          <s:enumeration value="OperationSummaryPartMonitoredCompany" />
+          <s:enumeration value="MarketingDistributionPartMonitoredCompany" />
+          <s:enumeration value="CustomersPartMonitoredCompany" />
+          <s:enumeration value="ProjectPartMonitoredCompany" />
+          <s:enumeration value="EmployeesPartMonitoredCompany" />
+          <s:enumeration value="FacilitiesPartMonitoredCompany" />
+          <s:enumeration value="OperationAppendixPartMonitoredCompany" />
+          <s:enumeration value="BuyPaySummaryPartMonitoredCompany" />
+          <s:enumeration value="BuyPayDetailsPartMonitoredCompany" />
+          <s:enumeration value="SuppliersReportsPartMonitoredCompany" />
+          <s:enumeration value="SuppliersPartMonitoredCompany" />
+          <s:enumeration value="FinancingSummaryPartMonitoredCompany" />
+          <s:enumeration value="FinancingDetailsPartMonitoredCompany" />
+          <s:enumeration value="BalanceSheetPartMonitoredCompany" />
+          <s:enumeration value="ProfitLossPartMonitoredCompany" />
+          <s:enumeration value="CashFlowPartMonitoredCompany" />
+          <s:enumeration value="BankPartMonitoredCompany" />
+          <s:enumeration value="OwnersSummaryPartMonitoredCompany" />
+          <s:enumeration value="LegalStatusPartMonitoredCompany" />
+          <s:enumeration value="ContinuedCompanyPartMonitoredCompany" />
+          <s:enumeration value="SharesCapitalPartMonitoredCompany" />
+          <s:enumeration value="OwnersByCompanyPartMonitoredCompany" />
+          <s:enumeration value="OwnersByRegisterPartMonitoredCompany" />
+          <s:enumeration value="ManagersByRegisterPartMonitoredCompany" />
+          <s:enumeration value="OwnersChangesPartMonitoredCompany" />
+          <s:enumeration value="ManagersPartMonitoredCompany" />
+          <s:enumeration value="RelatedCompaniesPartMonitoredCompany" />
+          <s:enumeration value="AssetsPartMonitoredCompany" />
+          <s:enumeration value="AlertsMoreInfoPartMonitoredCompany" />
+          <s:enumeration value="FinancingDetailsComparePartMonitoredCompany" />
+          <s:enumeration value="AlertsSumPartMonitoredCompany" />
+          <s:enumeration value="SimilarCompaniesPartMonitoredCompany" />
+          <s:enumeration value="CompareByCityPartMonitoredCompany" />
+          <s:enumeration value="CompareByEmployeesPartMonitoredCompany" />
+          <s:enumeration value="CompareByEstablishPartMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaMediaPartMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaLegalPartMonitoredCompany" />
+          <s:enumeration value="AlertsStockMarketPartMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaStockMarketPartMonitoredCompany" />
+          <s:enumeration value="OwnedCompaniesPartMonitoredCompany" />
+          <s:enumeration value="CreditOpinionPartMonitoredCompany" />
+          <s:enumeration value="AddressPartMonitoredCompany" />
+          <s:enumeration value="WebAddressPartMonitoredCompany" />
+          <s:enumeration value="PhonesPartMonitoredCompany" />
+          <s:enumeration value="NamesPartMonitoredCompany" />
+          <s:enumeration value="AlertsPartMonitoredCompany" />
+          <s:enumeration value="RegisPartMonitoredCompany" />
+          <s:enumeration value="RankSpecialPartMonitoredCompany" />
+          <s:enumeration value="CompanyDetailsPartUnMonitoredCompany" />
+          <s:enumeration value="BusinessPartUnMonitoredCompany" />
+          <s:enumeration value="SicPartUnMonitoredCompany" />
+          <s:enumeration value="ManagersSummaryPartUnMonitoredCompany" />
+          <s:enumeration value="RankPartUnMonitoredCompany" />
+          <s:enumeration value="MaxCreditPartUnMonitoredCompany" />
+          <s:enumeration value="RatingCommentaryPartUnMonitoredCompany" />
+          <s:enumeration value="ScorePartUnMonitoredCompany" />
+          <s:enumeration value="CompareBySicPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersTreePartUnMonitoredCompany" />
+          <s:enumeration value="SpecialEventsPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsNegPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsPosPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsMediaPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsLegalPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsImportantPartUnMonitoredCompany" />
+          <s:enumeration value="OperationSummaryPartUnMonitoredCompany" />
+          <s:enumeration value="MarketingDistributionPartUnMonitoredCompany" />
+          <s:enumeration value="CustomersPartUnMonitoredCompany" />
+          <s:enumeration value="ProjectPartUnMonitoredCompany" />
+          <s:enumeration value="EmployeesPartUnMonitoredCompany" />
+          <s:enumeration value="FacilitiesPartUnMonitoredCompany" />
+          <s:enumeration value="OperationAppendixPartUnMonitoredCompany" />
+          <s:enumeration value="BuyPaySummaryPartUnMonitoredCompany" />
+          <s:enumeration value="BuyPayDetailsPartUnMonitoredCompany" />
+          <s:enumeration value="SuppliersReportsPartUnMonitoredCompany" />
+          <s:enumeration value="SuppliersPartUnMonitoredCompany" />
+          <s:enumeration value="ProfitLossPartUnMonitoredCompany" />
+          <s:enumeration value="CashFlowPartUnMonitoredCompany" />
+          <s:enumeration value="BankPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersSummaryPartUnMonitoredCompany" />
+          <s:enumeration value="LegalStatusPartUnMonitoredCompany" />
+          <s:enumeration value="ContinuedCompanyPartUnMonitoredCompany" />
+          <s:enumeration value="SharesCapitalPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersByCompanyPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersByRegisterPartUnMonitoredCompany" />
+          <s:enumeration value="ManagersByRegisterPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersChangesPartUnMonitoredCompany" />
+          <s:enumeration value="ManagersPartUnMonitoredCompany" />
+          <s:enumeration value="RelatedCompaniesPartUnMonitoredCompany" />
+          <s:enumeration value="AssetsPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsMoreInfoPartUnMonitoredCompany" />
+          <s:enumeration value="FinancingDetailsComparePartUnMonitoredCompany" />
+          <s:enumeration value="AlertsSumPartUnMonitoredCompany" />
+          <s:enumeration value="SimilarCompaniesPartUnMonitoredCompany" />
+          <s:enumeration value="CompareByCityPartUnMonitoredCompany" />
+          <s:enumeration value="CompareByEmployeesPartUnMonitoredCompany" />
+          <s:enumeration value="CompareByEstablishPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaMediaPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaLegalPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsStockMarketPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsDeltaStockMarketPartUnMonitoredCompany" />
+          <s:enumeration value="OwnedCompaniesPartUnMonitoredCompany" />
+          <s:enumeration value="CreditOpinionPartUnMonitoredCompany" />
+          <s:enumeration value="AddressPartUnMonitoredCompany" />
+          <s:enumeration value="WebAddressPartUnMonitoredCompany" />
+          <s:enumeration value="PhonesPartUnMonitoredCompany" />
+          <s:enumeration value="NamesPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsPartUnMonitoredCompany" />
+          <s:enumeration value="RegisPartUnMonitoredCompany" />
+          <s:enumeration value="RankSpecialPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsIndicationPartMonitoredCompany" />
+          <s:enumeration value="AlertsIndicationPartUnMonitoredCompany" />
+          <s:enumeration value="CompanySearchWS" />
+          <s:enumeration value="DBMobile" />
+          <s:enumeration value="CompaniesinFailure" />
+          <s:enumeration value="DetailsRankMaxCreditReport" />
+          <s:enumeration value="IsracardReport" />
+          <s:enumeration value="FullRashamReportPartnerships" />
+          <s:enumeration value="FullRasamReportCompanies" />
+          <s:enumeration value="SurveyOfIndustry" />
+          <s:enumeration value="ToolBox" />
+          <s:enumeration value="ToolBoxDynamicGroups" />
+          <s:enumeration value="DIIViewInSubsLevel" />
+          <s:enumeration value="CompaniesForDynamicQueries" />
+          <s:enumeration value="LegalStatusExtendedPartUnMonitoredCompany" />
+          <s:enumeration value="LegalStatusExtendedPartMonitoredCompany" />
+          <s:enumeration value="ActivityPartUnMonitoredCompany" />
+          <s:enumeration value="ActivityPartMonitoredCompany" />
+          <s:enumeration value="ScoreCurrentPart" />
+          <s:enumeration value="ScoreCurrentPartUnMonitoredCompany" />
+          <s:enumeration value="ScoreCurrentPartMonitoredCompany" />
+          <s:enumeration value="RelatedCompaniesExPartMonitoredCompany" />
+          <s:enumeration value="RelatedCompaniesExPartUnMonitoredCompany" />
+          <s:enumeration value="AlertsNegExtlPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersByRegister2LevelPartUnMonitoredCompany" />
+          <s:enumeration value="OwnersByRegister1LevelWeightedPartUnMonitoredCompany" />
+          <s:enumeration value="DirectorsPartMonitoredCompany" />
+          <s:enumeration value="IsaLloadGeneralFile" />
+          <s:enumeration value="CompactInquiry" />
+          <s:enumeration value="CustomersAndSuppliers" />
+          <s:enumeration value="TabooYashirServices" />
+          <s:enumeration value="NewDBriskSite" />
+          <s:enumeration value="CrossingReportCompaniesFollowed" />
+          <s:enumeration value="CrossingReportCompaniesNotFollowed" />
+          <s:enumeration value="ViewRashamOrderDate" />
+          <s:enumeration value="NamalHaifaCompanySearch" />
+          <s:enumeration value="NoAdvertisement" />
+          <s:enumeration value="ToolBoxDynamicGropsOnAllCompanies" />
+          <s:enumeration value="ToolBoxDisableDataExport" />
+          <s:enumeration value="CheckItFull" />
+          <s:enumeration value="ShowInquiryReportDate" />
+          <s:enumeration value="ClalCreditScore" />
+          <s:enumeration value="Mashconot" />
+          <s:enumeration value="ShareHolders" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DNBWMCheckUserRightResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DNBWMCheckUserRightResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+            <s:element minOccurs="1" maxOccurs="1" name="subsCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunBankOfJerusalemQuery">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phonePrefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="street" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="streetNumber" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="zipCode" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunBankOfJerusalemQueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RunBankOfJerusalemQueryResult" type="tns:BankOfJerusalemQueryResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BankOfJerusalemQueryResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RegisnumListOfHolder" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegisnumListByPhone" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegisnumListByAddress" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCryptoToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCryptoTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCryptoTokenResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMCheckLimitedCompAccountRegis">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bankCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="branchCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="accountCode" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="SerialCheckNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="car" type="tns:ArrayOfCheckAccountRule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMCheckLimitedCompAccountRegisResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WMCheckLimitedCompAccountRegisResult" type="tns:CheckAccountResult_Extended" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CheckAccountResult_Extended">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CheckAccountResult">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="regis" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="WMAddRegisByBankAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="regis" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bankCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="branchCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="accountCode" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="car" type="tns:ArrayOfCheckAccountRule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMAddRegisByBankAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WMAddRegisByBankAccountResult" type="tns:CheckAccountResult_Extended" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMInsertScanCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="subscode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="prmtcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="regis" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bankCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="branchCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="accountCode" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="SerialCheckNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CheckBlob" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsBounced" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WMInsertScanCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WMInsertScanCheckResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="servStat" type="tns:InterOpServiceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:complexType name="MatcherCompanyFound">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Duns" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Rating" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Skind" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="WMGetMyIPSoapIn">
+    <wsdl:part name="parameters" element="tns:WMGetMyIP" />
+  </wsdl:message>
+  <wsdl:message name="WMGetMyIPSoapOut">
+    <wsdl:part name="parameters" element="tns:WMGetMyIPResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetOneMonitoredCompanyScoreSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetOneMonitoredCompanyScore" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetOneMonitoredCompanyScoreSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetOneMonitoredCompanyScoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetOrderedPartsFileURLSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetOrderedPartsFileURL" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetOrderedPartsFileURLSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetOrderedPartsFileURLResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCompanyScoreByStringSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCompanyScoreByString" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCompanyScoreByStringSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCompanyScoreByStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCompanyScoreSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCompanyScore" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCompanyScoreSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCompanyScoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompaniesScoreSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompaniesScore" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompaniesScoreSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompaniesScoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompaniesScoreAndMaxcreditSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompaniesScoreAndMaxcredit" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompaniesScoreAndMaxcreditSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompaniesScoreAndMaxcreditResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompaniesScoreHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompaniesScoreHistory" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompaniesScoreHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompaniesScoreHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCompanyScoreHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCompanyScoreHistory" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCompanyScoreHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCompanyScoreHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetUserMonitoredCompaniesSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetUserMonitoredCompanies" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetUserMonitoredCompaniesSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetUserMonitoredCompaniesResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetUserMonitoredCompaniesDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetUserMonitoredCompaniesDetails" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetUserMonitoredCompaniesDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetUserMonitoredCompaniesDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMAddMonitoredCompaniesSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMAddMonitoredCompanies" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMAddMonitoredCompaniesSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMAddMonitoredCompaniesResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompaniesAlertsSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompaniesAlerts" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompaniesAlertsSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompaniesAlertsResponse" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckLimitedCompAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:WMCheckLimitedCompAccount" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckLimitedCompAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:WMCheckLimitedCompAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckLimitedCompAccountExtSoapIn">
+    <wsdl:part name="parameters" element="tns:WMCheckLimitedCompAccountExt" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckLimitedCompAccountExtSoapOut">
+    <wsdl:part name="parameters" element="tns:WMCheckLimitedCompAccountExtResponse" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckSeverlyLimitedAccountByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:WMCheckSeverlyLimitedAccountById" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckSeverlyLimitedAccountByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:WMCheckSeverlyLimitedAccountByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckMonitoredCompamySoapIn">
+    <wsdl:part name="parameters" element="tns:WMCheckMonitoredCompamy" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckMonitoredCompamySoapOut">
+    <wsdl:part name="parameters" element="tns:WMCheckMonitoredCompamyResponse" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:WMCheckCompany" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:WMCheckCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckCompanyExtendedSoapIn">
+    <wsdl:part name="parameters" element="tns:WMCheckCompanyExtended" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckCompanyExtendedSoapOut">
+    <wsdl:part name="parameters" element="tns:WMCheckCompanyExtendedResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderReportSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderReport" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderReportSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderReportToPDFSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderReportToPDF" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderReportToPDFSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderReportToPDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderReportToMailSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderReportToMail" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderReportToMailSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderReportToMailResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMCheckReportAvailabilitySoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMCheckReportAvailability" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMCheckReportAvailabilitySoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMCheckReportAvailabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMAutoAddMonitoredCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMAutoAddMonitoredCompany" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMAutoAddMonitoredCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMAutoAddMonitoredCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMAddCompaniesToMonitoredListSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMAddCompaniesToMonitoredList" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMAddCompaniesToMonitoredListSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMAddCompaniesToMonitoredListResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMCheckIfAutomaticRule4SoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMCheckIfAutomaticRule4" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMCheckIfAutomaticRule4SoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMCheckIfAutomaticRule4Response" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompanySicSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompanySic" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompanySicSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompanySicResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCompanySicSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCompanySic" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCompanySicSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCompanySicResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCompanyAlertsSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCompanyAlerts" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCompanyAlertsSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCompanyAlertsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompanyAlertsSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompanyAlerts" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetMonitoredCompanyAlertsSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetMonitoredCompanyAlertsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCutAlertsSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCutAlerts" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMGetCutAlertsSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMGetCutAlertsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReportUpdateDatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReportUpdateDates" />
+  </wsdl:message>
+  <wsdl:message name="GetReportUpdateDatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportUpdateDatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckItVersionExtendedSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCheckItVersionExtended" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckItVersionExtendedSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCheckItVersionExtendedResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckItVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCheckItVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckItVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCheckItVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMAddCustomerNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMAddCustomerNumber" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMAddCustomerNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMAddCustomerNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderReportPartSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderReportPart" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderReportPartSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderReportPartResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderReportPartCollectionSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderReportPartCollection" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderReportPartCollectionSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderReportPartCollectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderMonitoredCompanyReportPartSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderMonitoredCompanyReportPart" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderMonitoredCompanyReportPartSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderMonitoredCompanyReportPartResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderMonitoredCompaniesReportPartSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderMonitoredCompaniesReportPart" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderMonitoredCompaniesReportPartSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderMonitoredCompaniesReportPartResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderBulkCheckMonitoredCompaniesFileSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderBulkCheckMonitoredCompaniesFile" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderBulkCheckMonitoredCompaniesFileSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderBulkCheckMonitoredCompaniesFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderMonitoredCompaniesReportPartsFileSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderMonitoredCompaniesReportPartsFile" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderMonitoredCompaniesReportPartsFileSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderMonitoredCompaniesReportPartsFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderMonitoredCompanyObligoSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderMonitoredCompanyObligo" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMOrderMonitoredCompanyObligoSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMOrderMonitoredCompanyObligoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoubleCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:DoubleCheck" />
+  </wsdl:message>
+  <wsdl:message name="DoubleCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:DoubleCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="WMCompanySearchSoapIn">
+    <wsdl:part name="parameters" element="tns:WMCompanySearch" />
+  </wsdl:message>
+  <wsdl:message name="WMCompanySearchSoapOut">
+    <wsdl:part name="parameters" element="tns:WMCompanySearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="WMGetHoldingsByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:WMGetHoldingsById" />
+  </wsdl:message>
+  <wsdl:message name="WMGetHoldingsByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:WMGetHoldingsByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMCheckUserRightSoapIn">
+    <wsdl:part name="parameters" element="tns:DNBWMCheckUserRight" />
+  </wsdl:message>
+  <wsdl:message name="DNBWMCheckUserRightSoapOut">
+    <wsdl:part name="parameters" element="tns:DNBWMCheckUserRightResponse" />
+  </wsdl:message>
+  <wsdl:message name="RunBankOfJerusalemQuerySoapIn">
+    <wsdl:part name="parameters" element="tns:RunBankOfJerusalemQuery" />
+  </wsdl:message>
+  <wsdl:message name="RunBankOfJerusalemQuerySoapOut">
+    <wsdl:part name="parameters" element="tns:RunBankOfJerusalemQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCryptoTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCryptoToken" />
+  </wsdl:message>
+  <wsdl:message name="GetCryptoTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCryptoTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckLimitedCompAccountRegisSoapIn">
+    <wsdl:part name="parameters" element="tns:WMCheckLimitedCompAccountRegis" />
+  </wsdl:message>
+  <wsdl:message name="WMCheckLimitedCompAccountRegisSoapOut">
+    <wsdl:part name="parameters" element="tns:WMCheckLimitedCompAccountRegisResponse" />
+  </wsdl:message>
+  <wsdl:message name="WMAddRegisByBankAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:WMAddRegisByBankAccount" />
+  </wsdl:message>
+  <wsdl:message name="WMAddRegisByBankAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:WMAddRegisByBankAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="WMInsertScanCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:WMInsertScanCheck" />
+  </wsdl:message>
+  <wsdl:message name="WMInsertScanCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:WMInsertScanCheckResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DNBProductsWSSoap">
+    <wsdl:operation name="WMGetMyIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the caller's IP address</wsdl:documentation>
+      <wsdl:input message="tns:WMGetMyIPSoapIn" />
+      <wsdl:output message="tns:WMGetMyIPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetOneMonitoredCompanyScore">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive monitored company score</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetOneMonitoredCompanyScoreSoapIn" />
+      <wsdl:output message="tns:DNBWMGetOneMonitoredCompanyScoreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetOrderedPartsFileURL">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Recieve the URL of an offline generated parts file. Returns an empty string if the file is not ready yet. &lt;br/&gt;
+									Should be used after using the DNBWMOrderMonitoredCompaniesReportPartsFile request method</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetOrderedPartsFileURLSoapIn" />
+      <wsdl:output message="tns:DNBWMGetOrderedPartsFileURLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyScoreByString">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive company score by Duns (option = 1) or by Regis (option = 2) - given as a string value</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetCompanyScoreByStringSoapIn" />
+      <wsdl:output message="tns:DNBWMGetCompanyScoreByStringSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyScore">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive company score by Duns (option = 1) or by Regis (option = 2)</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetCompanyScoreSoapIn" />
+      <wsdl:output message="tns:DNBWMGetCompanyScoreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesScore">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive all (option=1) or delta (option=2) monitored companies score</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetMonitoredCompaniesScoreSoapIn" />
+      <wsdl:output message="tns:DNBWMGetMonitoredCompaniesScoreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesScoreAndMaxcredit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive all (option=1) or delta (option=2) monitored companies score and maxcredit</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetMonitoredCompaniesScoreAndMaxcreditSoapIn" />
+      <wsdl:output message="tns:DNBWMGetMonitoredCompaniesScoreAndMaxcreditSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesScoreHistory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive all monitored companies score history</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetMonitoredCompaniesScoreHistorySoapIn" />
+      <wsdl:output message="tns:DNBWMGetMonitoredCompaniesScoreHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyScoreHistory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive company score history</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetCompanyScoreHistorySoapIn" />
+      <wsdl:output message="tns:DNBWMGetCompanyScoreHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetUserMonitoredCompanies">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive monitored company list</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetUserMonitoredCompaniesSoapIn" />
+      <wsdl:output message="tns:DNBWMGetUserMonitoredCompaniesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetUserMonitoredCompaniesDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive  all (option=1) or delta (option=2) monitored companies details</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetUserMonitoredCompaniesDetailsSoapIn" />
+      <wsdl:output message="tns:DNBWMGetUserMonitoredCompaniesDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAddMonitoredCompanies">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[DEPRECATED! Look for DNBWMAddCompaniesToMonitoredList] Add Companies to the monitor group</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMAddMonitoredCompaniesSoapIn" />
+      <wsdl:output message="tns:DNBWMAddMonitoredCompaniesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesAlerts">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive all (option=1) or delta (option=2) monitored companies alerts</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetMonitoredCompaniesAlertsSoapIn" />
+      <wsdl:output message="tns:DNBWMGetMonitoredCompaniesAlertsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckLimitedCompAccount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check company account - against the given set of rules</wsdl:documentation>
+      <wsdl:input message="tns:WMCheckLimitedCompAccountSoapIn" />
+      <wsdl:output message="tns:WMCheckLimitedCompAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckLimitedCompAccountExt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check company account - against the given set of rules</wsdl:documentation>
+      <wsdl:input message="tns:WMCheckLimitedCompAccountExtSoapIn" />
+      <wsdl:output message="tns:WMCheckLimitedCompAccountExtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckSeverlyLimitedAccountById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check limited account by Id</wsdl:documentation>
+      <wsdl:input message="tns:WMCheckSeverlyLimitedAccountByIdSoapIn" />
+      <wsdl:output message="tns:WMCheckSeverlyLimitedAccountByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckMonitoredCompamy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check monitored company status</wsdl:documentation>
+      <wsdl:input message="tns:WMCheckMonitoredCompamySoapIn" />
+      <wsdl:output message="tns:WMCheckMonitoredCompamySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckCompany">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check company status</wsdl:documentation>
+      <wsdl:input message="tns:WMCheckCompanySoapIn" />
+      <wsdl:output message="tns:WMCheckCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckCompanyExtended">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check company status and limited monitored company by date</wsdl:documentation>
+      <wsdl:input message="tns:WMCheckCompanyExtendedSoapIn" />
+      <wsdl:output message="tns:WMCheckCompanyExtendedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReport">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Order reports in XML format:  1 - analyst, 2 - Profile, 3 - Compact 5 - new analyst, 2033 - DetailsRankMaxCredit </wsdl:documentation>
+      <wsdl:input message="tns:DNBWMOrderReportSoapIn" />
+      <wsdl:output message="tns:DNBWMOrderReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportToPDF">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Order reports in PDF format </wsdl:documentation>
+      <wsdl:input message="tns:DNBWMOrderReportToPDFSoapIn" />
+      <wsdl:output message="tns:DNBWMOrderReportToPDFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportToMail">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Order reports in XML format to the mail:  1 - analyst, 2 - Profile, 3 - Compact 5 - new analyst </wsdl:documentation>
+      <wsdl:input message="tns:DNBWMOrderReportToMailSoapIn" />
+      <wsdl:output message="tns:DNBWMOrderReportToMailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMCheckReportAvailability">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check Report Availability:  1 - analyst, 2 - Profile, 3 - Compact</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMCheckReportAvailabilitySoapIn" />
+      <wsdl:output message="tns:DNBWMCheckReportAvailabilitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAutoAddMonitoredCompany">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a company to the customer's monitored companies list</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMAutoAddMonitoredCompanySoapIn" />
+      <wsdl:output message="tns:DNBWMAutoAddMonitoredCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAddCompaniesToMonitoredList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add companies to the monitored list, together with their customer numbers</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMAddCompaniesToMonitoredListSoapIn" />
+      <wsdl:output message="tns:DNBWMAddCompaniesToMonitoredListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMCheckIfAutomaticRule4">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check Report Availability</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMCheckIfAutomaticRule4SoapIn" />
+      <wsdl:output message="tns:DNBWMCheckIfAutomaticRule4SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompanySic">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get monitored company sic code numbers</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetMonitoredCompanySicSoapIn" />
+      <wsdl:output message="tns:DNBWMGetMonitoredCompanySicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanySic">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get company sic code numbers</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetCompanySicSoapIn" />
+      <wsdl:output message="tns:DNBWMGetCompanySicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyAlerts">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive company alerts, date format: YYYYMMDD, amount = amount of alerts in response order by alert date desending</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetCompanyAlertsSoapIn" />
+      <wsdl:output message="tns:DNBWMGetCompanyAlertsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompanyAlerts">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive alerts of a monitored company</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetMonitoredCompanyAlertsSoapIn" />
+      <wsdl:output message="tns:DNBWMGetMonitoredCompanyAlertsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCutAlerts">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Receive company alerts, date format: YYYYMMDD, amount = amount of alerts in response order by alert date desending</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMGetCutAlertsSoapIn" />
+      <wsdl:output message="tns:DNBWMGetCutAlertsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportUpdateDates">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the update date of a report, and all it's chapters' update dates</wsdl:documentation>
+      <wsdl:input message="tns:GetReportUpdateDatesSoapIn" />
+      <wsdl:output message="tns:GetReportUpdateDatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckItVersionExtended">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrive the latest version of CheckIt, for a specific user</wsdl:documentation>
+      <wsdl:input message="tns:GetCheckItVersionExtendedSoapIn" />
+      <wsdl:output message="tns:GetCheckItVersionExtendedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckItVersion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrive the latest version of CheckIt</wsdl:documentation>
+      <wsdl:input message="tns:GetCheckItVersionSoapIn" />
+      <wsdl:output message="tns:GetCheckItVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAddCustomerNumber">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allow the customer to add their own Customer Number to a specific duns</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMAddCustomerNumberSoapIn" />
+      <wsdl:output message="tns:DNBWMAddCustomerNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportPart">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Order data part</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMOrderReportPartSoapIn" />
+      <wsdl:output message="tns:DNBWMOrderReportPartSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportPartCollection">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Order several data parts</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMOrderReportPartCollectionSoapIn" />
+      <wsdl:output message="tns:DNBWMOrderReportPartCollectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompanyReportPart">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Order data part on monitored companies</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMOrderMonitoredCompanyReportPartSoapIn" />
+      <wsdl:output message="tns:DNBWMOrderMonitoredCompanyReportPartSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompaniesReportPart">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Order data part on ALL monitored companies</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMOrderMonitoredCompaniesReportPartSoapIn" />
+      <wsdl:output message="tns:DNBWMOrderMonitoredCompaniesReportPartSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderBulkCheckMonitoredCompaniesFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Order async processing of 'check company' for all the companies in the user's monitored companies list</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMOrderBulkCheckMonitoredCompaniesFileSoapIn" />
+      <wsdl:output message="tns:DNBWMOrderBulkCheckMonitoredCompaniesFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompaniesReportPartsFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Order multiple data parts on ALL monitored companies asynchronously, in a ZIP file</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMOrderMonitoredCompaniesReportPartsFileSoapIn" />
+      <wsdl:output message="tns:DNBWMOrderMonitoredCompaniesReportPartsFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompanyObligo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Order Obligo data part on monitored companies</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMOrderMonitoredCompanyObligoSoapIn" />
+      <wsdl:output message="tns:DNBWMOrderMonitoredCompanyObligoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoubleCheck">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Method is part of the DoubleCheck product</wsdl:documentation>
+      <wsdl:input message="tns:DoubleCheckSoapIn" />
+      <wsdl:output message="tns:DoubleCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WMCompanySearch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Search for a company in D&amp;B's database</wsdl:documentation>
+      <wsdl:input message="tns:WMCompanySearchSoapIn" />
+      <wsdl:output message="tns:WMCompanySearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WMGetHoldingsById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the list of holdings for the given person (by his id_num)</wsdl:documentation>
+      <wsdl:input message="tns:WMGetHoldingsByIdSoapIn" />
+      <wsdl:output message="tns:WMGetHoldingsByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMCheckUserRight">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check user rights</wsdl:documentation>
+      <wsdl:input message="tns:DNBWMCheckUserRightSoapIn" />
+      <wsdl:output message="tns:DNBWMCheckUserRightSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RunBankOfJerusalemQuery">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Run the Bank of Jerusalem's specialized query</wsdl:documentation>
+      <wsdl:input message="tns:RunBankOfJerusalemQuerySoapIn" />
+      <wsdl:output message="tns:RunBankOfJerusalemQuerySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCryptoToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get crypto token for silent login links</wsdl:documentation>
+      <wsdl:input message="tns:GetCryptoTokenSoapIn" />
+      <wsdl:output message="tns:GetCryptoTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckLimitedCompAccountRegis">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Method is provided by D&amp;B Israel in order to check company account (returns account status and regis if have)</wsdl:documentation>
+      <wsdl:input message="tns:WMCheckLimitedCompAccountRegisSoapIn" />
+      <wsdl:output message="tns:WMCheckLimitedCompAccountRegisSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WMAddRegisByBankAccount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Method is provided by D&amp;B Israel in order to insert new Regis with account details</wsdl:documentation>
+      <wsdl:input message="tns:WMAddRegisByBankAccountSoapIn" />
+      <wsdl:output message="tns:WMAddRegisByBankAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WMInsertScanCheck">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Method is provided by D&amp;B Israel in order to insert scan Check </wsdl:documentation>
+      <wsdl:input message="tns:WMInsertScanCheckSoapIn" />
+      <wsdl:output message="tns:WMInsertScanCheckSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DNBProductsWSSoap" type="tns:DNBProductsWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WMGetMyIP">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMGetMyIP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetOneMonitoredCompanyScore">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetOneMonitoredCompanyScore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetOrderedPartsFileURL">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetOrderedPartsFileURL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyScoreByString">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCompanyScoreByString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyScore">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCompanyScore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesScore">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompaniesScore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesScoreAndMaxcredit">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompaniesScoreAndMaxcredit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesScoreHistory">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompaniesScoreHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyScoreHistory">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCompanyScoreHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetUserMonitoredCompanies">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetUserMonitoredCompanies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetUserMonitoredCompaniesDetails">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetUserMonitoredCompaniesDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAddMonitoredCompanies">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMAddMonitoredCompanies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesAlerts">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompaniesAlerts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckLimitedCompAccount">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMCheckLimitedCompAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckLimitedCompAccountExt">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMCheckLimitedCompAccountExt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckSeverlyLimitedAccountById">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMCheckSeverlyLimitedAccountById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckMonitoredCompamy">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMCheckMonitoredCompamy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckCompany">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMCheckCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckCompanyExtended">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMCheckCompanyExtended" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReport">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportToPDF">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderReportToPDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportToMail">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderReportToMail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMCheckReportAvailability">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMCheckReportAvailability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAutoAddMonitoredCompany">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMAutoAddMonitoredCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAddCompaniesToMonitoredList">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMAddCompaniesToMonitoredList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMCheckIfAutomaticRule4">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMCheckIfAutomaticRule4" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompanySic">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompanySic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanySic">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCompanySic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyAlerts">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCompanyAlerts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompanyAlerts">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompanyAlerts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCutAlerts">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCutAlerts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportUpdateDates">
+      <soap:operation soapAction="http://www.dbisrael.co.il/GetReportUpdateDates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckItVersionExtended">
+      <soap:operation soapAction="http://www.dbisrael.co.il/GetCheckItVersionExtended" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckItVersion">
+      <soap:operation soapAction="http://www.dbisrael.co.il/GetCheckItVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAddCustomerNumber">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMAddCustomerNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportPart">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderReportPart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportPartCollection">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderReportPartCollection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompanyReportPart">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderMonitoredCompanyReportPart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompaniesReportPart">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderMonitoredCompaniesReportPart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderBulkCheckMonitoredCompaniesFile">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderBulkCheckMonitoredCompaniesFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompaniesReportPartsFile">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderMonitoredCompaniesReportPartsFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompanyObligo">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderMonitoredCompanyObligo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoubleCheck">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DoubleCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCompanySearch">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMCompanySearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMGetHoldingsById">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMGetHoldingsById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMCheckUserRight">
+      <soap:operation soapAction="http://www.dbisrael.co.il/DNBWMCheckUserRight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunBankOfJerusalemQuery">
+      <soap:operation soapAction="http://www.dbisrael.co.il/RunBankOfJerusalemQuery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCryptoToken">
+      <soap:operation soapAction="http://www.dbisrael.co.il/GetCryptoToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckLimitedCompAccountRegis">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMCheckLimitedCompAccountRegis" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMAddRegisByBankAccount">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMAddRegisByBankAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMInsertScanCheck">
+      <soap:operation soapAction="http://www.dbisrael.co.il/WMInsertScanCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DNBProductsWSSoap12" type="tns:DNBProductsWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WMGetMyIP">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMGetMyIP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetOneMonitoredCompanyScore">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetOneMonitoredCompanyScore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetOrderedPartsFileURL">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetOrderedPartsFileURL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyScoreByString">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCompanyScoreByString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyScore">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCompanyScore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesScore">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompaniesScore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesScoreAndMaxcredit">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompaniesScoreAndMaxcredit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesScoreHistory">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompaniesScoreHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyScoreHistory">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCompanyScoreHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetUserMonitoredCompanies">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetUserMonitoredCompanies" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetUserMonitoredCompaniesDetails">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetUserMonitoredCompaniesDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAddMonitoredCompanies">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMAddMonitoredCompanies" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompaniesAlerts">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompaniesAlerts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckLimitedCompAccount">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMCheckLimitedCompAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckLimitedCompAccountExt">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMCheckLimitedCompAccountExt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckSeverlyLimitedAccountById">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMCheckSeverlyLimitedAccountById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckMonitoredCompamy">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMCheckMonitoredCompamy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckCompany">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMCheckCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckCompanyExtended">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMCheckCompanyExtended" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReport">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportToPDF">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderReportToPDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportToMail">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderReportToMail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMCheckReportAvailability">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMCheckReportAvailability" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAutoAddMonitoredCompany">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMAutoAddMonitoredCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAddCompaniesToMonitoredList">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMAddCompaniesToMonitoredList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMCheckIfAutomaticRule4">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMCheckIfAutomaticRule4" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompanySic">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompanySic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanySic">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCompanySic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCompanyAlerts">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCompanyAlerts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetMonitoredCompanyAlerts">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetMonitoredCompanyAlerts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMGetCutAlerts">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMGetCutAlerts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportUpdateDates">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/GetReportUpdateDates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckItVersionExtended">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/GetCheckItVersionExtended" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckItVersion">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/GetCheckItVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMAddCustomerNumber">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMAddCustomerNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportPart">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderReportPart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderReportPartCollection">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderReportPartCollection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompanyReportPart">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderMonitoredCompanyReportPart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompaniesReportPart">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderMonitoredCompaniesReportPart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderBulkCheckMonitoredCompaniesFile">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderBulkCheckMonitoredCompaniesFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompaniesReportPartsFile">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderMonitoredCompaniesReportPartsFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMOrderMonitoredCompanyObligo">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMOrderMonitoredCompanyObligo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoubleCheck">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DoubleCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCompanySearch">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMCompanySearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMGetHoldingsById">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMGetHoldingsById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DNBWMCheckUserRight">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/DNBWMCheckUserRight" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunBankOfJerusalemQuery">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/RunBankOfJerusalemQuery" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCryptoToken">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/GetCryptoToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMCheckLimitedCompAccountRegis">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMCheckLimitedCompAccountRegis" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMAddRegisByBankAccount">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMAddRegisByBankAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WMInsertScanCheck">
+      <soap12:operation soapAction="http://www.dbisrael.co.il/WMInsertScanCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DNBProductsWS">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service is provided by D&amp;B to enable data integration for customers and partners</wsdl:documentation>
+    <wsdl:port name="DNBProductsWSSoap" binding="tns:DNBProductsWSSoap">
+      <soap:address location="https://dnbws.dundb.co.il/DNBInterOp/DNBProductsWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DNBProductsWSSoap12" binding="tns:DNBProductsWSSoap12">
+      <soap12:address location="https://dnbws.dundb.co.il/DNBInterOp/DNBProductsWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
