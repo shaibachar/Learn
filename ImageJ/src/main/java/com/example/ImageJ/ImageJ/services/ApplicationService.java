@@ -1,19 +1,14 @@
 package com.example.ImageJ.ImageJ.services;
 
-import com.example.ImageJ.ImageJ.services.util.GeneralUtils;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ConvolveOp;
-import java.awt.image.Kernel;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -23,6 +18,12 @@ import java.util.List;
 @Service
 public class ApplicationService {
     private static final Logger logger = LoggerFactory.getLogger(ApplicationService.class);
+
+    private final ResourceLoader resourceLoader;
+
+    public ApplicationService(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 
     public String getHello(String name) {
         return String.format("hello %s", name);
@@ -82,7 +83,8 @@ public class ApplicationService {
      */
     public String doOcrRightUpperCorner(InputStream inputStream) throws TesseractException, IOException {
         Tesseract tesseract = new Tesseract();
-        tesseract.setDatapath("C:\\workspace\\Tests\\Learn1\\ImageJ\\src\\main\\resources");
+        String path = resourceLoader.getResource("classpath:tessdata/heb.traineddata").getFile().getPath().replace("heb.traineddata", "");
+        tesseract.setDatapath(path);//classpath:
         tesseract.setLanguage("heb");
         BufferedImage imBuff = ImageIO.read(inputStream);
         BufferedImage bufferedImage = processRightUpperCornerImage(imBuff, 3);
@@ -182,6 +184,4 @@ public class ApplicationService {
 
         return outputImage;
     }
-
-
 }

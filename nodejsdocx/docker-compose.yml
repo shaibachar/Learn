@@ -1,0 +1,47 @@
+version: '3'
+services:
+  nodejsdocx-api-base:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.all.nodejsdocx-api-base
+    image: nodejsdocx-api-base
+  nodejsdocx-api:    
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.release.nodejsdocx-api
+    image: nodejsdocx-api
+    depends_on:
+      - nodejsdocx-api-base
+      - mongo
+    links:
+      - mongo:mongo
+    networks: 
+    - nodejsdocx-net
+    ports:    
+    - "3000:3000"
+    environment:
+      mongodb_app: mongodb://app_mongo_user:7119dcbe550548cea977c34cfc192a3b@mongo:27017/admin
+      api_port: 3000      
+  mongo:
+    image: mongo
+    volumes:
+    - db_data:/data/db
+    restart: always
+    command: --storageEngine wiredTiger
+    ports:
+    - "27017:27017"
+    depends_on:
+      - nodejsdocx-api-base    
+    networks:
+    - nodejsdocx-net
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: app_mongo_user
+      MONGO_INITDB_ROOT_PASSWORD: 7119dcbe550548cea977c34cfc192a3b
+
+
+volumes:
+  db_data:
+
+networks: 
+  nodejsdocx-net: 
+    driver: bridge

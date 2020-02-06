@@ -1,0 +1,11 @@
+version: '3'
+services:
+  nodejsdocx-api:    
+    build:
+      dockerfile: ./Dockerfile.debug.nodejsdocx-api
+    image: nodejsdocx-api-livedebug
+    ports:
+    - "9229:9229"
+    volumes: 
+    - ./src:/app/src
+    - ./dist:/app/dist
