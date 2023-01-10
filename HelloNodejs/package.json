@@ -14,7 +14,7 @@
     "bcrypt": "^3.0.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
-    "convict": "^4.4.0",
+    "convict": "^6.2.4",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.6",
