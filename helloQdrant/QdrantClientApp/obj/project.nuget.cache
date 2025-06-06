@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "0u+GfAU04Io=",
+  "success": true,
+  "projectFilePath": "C:\\workspace\\Learn\\helloQdrant\\QdrantClientApp\\QdrantClientApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\shaib\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
