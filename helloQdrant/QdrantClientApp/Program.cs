@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,24 +9,24 @@ using Newtonsoft.Json;
 class Program
 {
     static readonly HttpClient client = new HttpClient();
-    const string baseUrl = "http://10.0.0.19:6333";
+    const string qdrantUrl = "http://10.0.0.19:6333";
     const string collectionName = "sentence-collection";
+    const string embeddingServerUrl = "http://10.0.0.19:8000";
 
-    static List<(int Id, string Text, float[] Embedding)> sentences = new()
+    static List<(int Id, string Text)> sentences = new()
     {
-        (1, "Artificial intelligence is changing the world.", new float[] { 0.91f, 0.87f, 0.89f, 0.88f, 0.9f }),
-        (2, "Machine learning is a subfield of AI.", new float[] { 0.89f, 0.86f, 0.88f, 0.87f, 0.91f }),
-        (3, "Cats are independent animals.", new float[] { 0.1f, 0.3f, 0.2f, 0.25f, 0.15f }),
-        (4, "Dogs are loyal and friendly.", new float[] { 0.12f, 0.28f, 0.19f, 0.22f, 0.16f }),
-        (5, "Neural networks power many AI tools.", new float[] { 0.88f, 0.9f, 0.87f, 0.86f, 0.92f }),
-        (6, "The sun is a giant ball of gas.", new float[] { 0.4f, 0.2f, 0.1f, 0.3f, 0.2f }),
-        (7, "Space exploration leads to scientific discoveries.", new float[] { 0.35f, 0.25f, 0.3f, 0.28f, 0.4f }),
-        (8, "AI can generate images and text.", new float[] { 0.9f, 0.85f, 0.86f, 0.84f, 0.87f }),
-        (9, "My dog enjoys playing fetch.", new float[] { 0.14f, 0.29f, 0.2f, 0.21f, 0.18f }),
-        (10, "The Milky Way contains billions of stars.", new float[] { 0.36f, 0.27f, 0.29f, 0.31f, 0.38f })
+        (1, "Artificial intelligence is changing the world."),
+        (2, "Machine learning is a subfield of AI."),
+        (3, "Cats are independent animals."),
+        (4, "Dogs are loyal and friendly."),
+        (5, "Neural networks power many AI tools."),
+        (6, "The sun is a giant ball of gas."),
+        (7, "Space exploration leads to scientific discoveries."),
+        (8, "AI can generate images and text."),
+        (9, "My dog enjoys playing fetch."),
+        (10, "The Milky Way contains billions of stars.")
     };
 
-    static float[] queryEmbedding = new float[] { 0.9f, 0.86f, 0.87f, 0.88f, 0.89f };
     static string queryText = "How is AI used in the modern world?";
 
     static async Task Main(string[] args)
@@ -35,22 +36,37 @@ class Program
         await Search();
     }
 
+    static async Task<List<float>> GetEmbedding(string sentence)
+    {
+        var payload = new { sentences = new[] { sentence } };
+        var json = JsonConvert.SerializeObject(payload);
+
+        var response = await client.PostAsync(
+            $"{embeddingServerUrl}/embed",
+            new StringContent(json, Encoding.UTF8, "application/json"));
+
+        response.EnsureSuccessStatusCode();
+        var responseJson = await response.Content.ReadAsStringAsync();
+
+        var result = JsonConvert.DeserializeObject<EmbeddingResponse>(responseJson);
+        return result.embeddings.First();
+    }
+
     static async Task CreateCollection()
     {
-        // Force delete existing collection
-        await client.DeleteAsync($"{baseUrl}/collections/{collectionName}");
+        await client.DeleteAsync($"{qdrantUrl}/collections/{collectionName}");
 
         var payload = new
         {
             vectors = new
             {
-                size = 5,
+                size = 384,
                 distance = "Cosine"
             }
         };
 
         var response = await client.PutAsync(
-            $"{baseUrl}/collections/{collectionName}",
+            $"{qdrantUrl}/collections/{collectionName}",
             new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json"));
 
         Console.WriteLine($"Create Collection: {response.StatusCode}");
@@ -59,20 +75,22 @@ class Program
     static async Task InsertSentences()
     {
         var points = new List<object>();
-        foreach (var s in sentences)
+
+        foreach (var (id, text) in sentences)
         {
+            var embedding = await GetEmbedding(text);
             points.Add(new
             {
-                id = s.Id,
-                vector = s.Embedding,
-                payload = new { text = s.Text }
+                id,
+                vector = embedding,
+                payload = new { text }
             });
         }
 
         var payload = new { points };
 
         var response = await client.PutAsync(
-            $"{baseUrl}/collections/{collectionName}/points",
+            $"{qdrantUrl}/collections/{collectionName}/points",
             new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json"));
 
         Console.WriteLine($"Insert Sentences: {response.StatusCode}");
@@ -80,19 +98,20 @@ class Program
 
     static async Task Search()
     {
+        var embedding = await GetEmbedding(queryText);
+
         var payload = new
         {
-            vector = queryEmbedding,
+            vector = embedding,
             top = 5,
             with_payload = true
         };
 
         var response = await client.PostAsync(
-            $"{baseUrl}/collections/{collectionName}/points/search",
+            $"{qdrantUrl}/collections/{collectionName}/points/search",
             new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json"));
 
         var resultJson = await response.Content.ReadAsStringAsync();
-
         Console.WriteLine($"\n🔍 Raw JSON Response:\n{resultJson}");
 
         var result = JsonConvert.DeserializeObject<QdrantSearchResponse>(resultJson);
@@ -103,15 +122,19 @@ class Program
             return;
         }
 
-        Console.WriteLine($"\n🔍 Search Results for: \"{queryText}\"");
+        Console.WriteLine($"\n🔍 Top Matches for: \"{queryText}\"");
         foreach (var item in result.result)
         {
             Console.WriteLine($"[Score: {item.score:F3}] {item.payload.text}");
         }
     }
 
-
     // --- Response DTOs ---
+    class EmbeddingResponse
+    {
+        public List<List<float>> embeddings { get; set; }
+    }
+
     class QdrantSearchResponse
     {
         public List<QdrantPoint> result { get; set; }
