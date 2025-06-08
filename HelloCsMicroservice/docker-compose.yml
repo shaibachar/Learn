@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  hellocs-api:
+    build:
+      context: ./HelloCs
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    container_name: hellocs-container
+    restart: unless-stopped

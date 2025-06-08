@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.fun.fun.controller;
 
 import com.fun.fun.services.FunService;
@@ -23,3 +24,16 @@ public class FunController {
         return ints;
     }
 }
+=======
+package com.fun.fun.controller
+
+@RestController
+class FunController {
+
+
+  @GetMapping("/fun")
+  public String fun() {
+    return "super fun";
+  }
+}
+>>>>>>> 98afdbecff07d124d0063bc06465ab08d9872b57

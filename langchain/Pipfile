@@ -8,10 +8,17 @@ langchain = "*"
 langchain-openai = "*"
 langchain-community = "*"
 langchainhub = "*"
+<<<<<<< HEAD
 black = "*"
 python-dotenv = "*"
+=======
+>>>>>>> 98afdbecff07d124d0063bc06465ab08d9872b57
 
 [dev-packages]
 
 [requires]
+<<<<<<< HEAD
 python_version = "3.12"
+=======
+python_version = "3.11"
+>>>>>>> 98afdbecff07d124d0063bc06465ab08d9872b57
