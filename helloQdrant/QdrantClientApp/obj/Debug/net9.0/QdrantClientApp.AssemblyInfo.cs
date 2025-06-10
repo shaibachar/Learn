@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QdrantClientApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5c6cf2cdd4cd87741ea6825be6477653c0c1371")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ffb4cc034ec843689e1d7e2a0c8d2e34c2250acf")]
 [assembly: System.Reflection.AssemblyProductAttribute("QdrantClientApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QdrantClientApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

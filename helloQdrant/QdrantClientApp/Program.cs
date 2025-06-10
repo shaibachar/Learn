@@ -27,7 +27,7 @@ class Program
         (10, "The Milky Way contains billions of stars.")
     };
 
-    static string queryText = "How is AI used in the modern world?";
+    static string queryText = "Artificial intelligence is changing the world.";
 
     static async Task Main(string[] args)
     {
